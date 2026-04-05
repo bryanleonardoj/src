@@ -1,0 +1,234 @@
+// =========================
+// DATOS
+// =========================
+
+const comunas = [
+  "Las Condes", "Providencia", "Santiago Centro", "Ñuñoa",
+  "La Florida", "Maipú", "Puente Alto", "Vitacura",
+  "Lo Barnechea", "San Miguel"
+];
+
+const preciosBase = {
+  privado: 12000,
+  ejecutivo: 17000,
+  van: 22000
+};
+
+// =========================
+// RENDER COMUNAS
+// =========================
+
+function renderComunas() {
+  const select = document.getElementById('comuna');
+  if (!select) return;
+
+  select.innerHTML = '<option value="">-- Seleccionar comuna --</option>' + comunas
+    .map((c, i) => `<option value="${i}">${c}</option>`)
+    .join('');
+}
+
+// =========================
+// COTIZADOR
+// =========================
+
+function cotizar(e) {
+  e.preventDefault();
+
+  const idx = document.getElementById('comuna').value;
+  const servicio = document.getElementById('servicio').value;
+  const pasajeros = +document.getElementById('pasajeros').value;
+  const fecha = document.getElementById('fecha').value;
+
+  // Validaciones
+  if (!idx || isNaN(parseInt(idx)) || !comunas[parseInt(idx)]) {
+    alert("Selecciona una comuna válida");
+    return;
+  }
+
+  if (pasajeros < 1 || pasajeros > 10) {
+    alert("El número de pasajeros debe ser entre 1 y 10");
+    return;
+  }
+
+  if (!servicio || !preciosBase[servicio]) {
+    alert("Selecciona un tipo de vehículo válido");
+    return;
+  }
+
+  const idxNum = parseInt(idx);
+  let precio = preciosBase[servicio];
+
+  // Ajuste por pasajeros
+  if (servicio === 'van' && pasajeros > 4) {
+    precio += (pasajeros - 4) * 2000;
+  }
+
+  // Ajuste horario nocturno 🌙
+  if (fecha) {
+    const hora = new Date(fecha).getHours();
+    if (hora >= 22 || hora <= 6) {
+      precio *= 1.2; // recargo 20%
+    }
+  }
+
+  const comunaNombre = comunas[idxNum];
+
+  let msg = `
+    <b>Destino:</b> ${comunaNombre}<br>
+    <b>Servicio:</b> ${servicio}<br>
+    <b>Pasajeros:</b> ${pasajeros}<br>
+  `;
+
+  if (fecha) {
+    msg += `<b>Fecha:</b> ${new Date(fecha).toLocaleString('es-CL')}<br>`;
+  }
+
+  msg += `
+    <br>
+    <span style="font-size:1.4em;color:#22c55e">
+      Total estimado: $${Math.round(precio).toLocaleString('es-CL')}
+    </span>
+  `;
+
+  document.getElementById('resultado').innerHTML = msg;
+}
+
+// =========================
+// CONTACTO
+// =========================
+
+function handleContactForm(e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById('nombre').value.trim();
+  const correo = document.getElementById('correo').value.trim();
+  const mensaje = document.getElementById('mensaje').value.trim();
+
+  // Validaciones
+  if (!nombre || nombre.length < 2) {
+    alert("Por favor ingresa un nombre válido");
+    return;
+  }
+
+  if (!correo || !correo.includes('@')) {
+    alert("Por favor ingresa un correo válido");
+    return;
+  }
+
+  if (!mensaje || mensaje.length < 10) {
+    alert("El mensaje debe tener al menos 10 caracteres");
+    return;
+  }
+
+  // Aquí puede ir la lógica de envío (API, email service, etc.)
+  const resultDiv = document.getElementById('contactResult');
+  resultDiv.style.display = 'block';
+  resultDiv.style.color = '#22c55e';
+  resultDiv.innerHTML = '✓ Mensaje enviado correctamente. Nos pondremos en contacto pronto.';
+
+  // Limpiar formulario
+  document.getElementById('contactForm').reset();
+
+  // Ocultar mensaje después de 5 segundos
+  setTimeout(() => {
+    resultDiv.style.display = 'none';
+  }, 5000);
+}
+
+// =========================
+// MAPA (Leaflet)
+// =========================
+
+let map;
+let marcador;
+
+function initMap() {
+  if (!window.L) return;
+
+  map = L.map('map').setView([-33.4489, -70.6693], 11);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap',
+    maxZoom: 18
+  }).addTo(map);
+
+  // Aeropuerto
+  L.marker([-33.3930, -70.7858])
+    .addTo(map)
+    .bindPopup("Aeropuerto SCL");
+
+  // Click en mapa
+  map.on('click', function(e) {
+    if (marcador) {
+      map.removeLayer(marcador);
+    }
+
+    marcador = L.marker(e.latlng).addTo(map);
+
+    const summary = document.getElementById('summary');
+    if (summary) {
+      summary.innerText =
+        `Destino seleccionado: ${e.latlng.lat.toFixed(4)}, ${e.latlng.lng.toFixed(4)}`;
+    }
+  });
+}
+
+// =========================
+// VUELOS (SIMULACIÓN)
+// =========================
+
+const vuelos = [
+  { vuelo: "LA123", destino: "Antofagasta", hora: "10:30", estado: "En horario" },
+  { vuelo: "SK456", destino: "Concepción", hora: "11:15", estado: "Retrasado" },
+  { vuelo: "JA789", destino: "Puerto Montt", hora: "12:00", estado: "Embarcando" }
+];
+
+function renderVuelos() {
+  const cont = document.getElementById('vuelos');
+  if (!cont) return;
+
+  cont.innerHTML = vuelos.map(v => `
+    <div class="vuelo-item">
+      <div><strong>${v.vuelo}</strong></div>
+      <div>${v.destino}</div>
+      <div>${v.hora}</div>
+      <div class="estado">${v.estado}</div>
+    </div>
+  `).join('');
+}
+
+// Cambiar estados automáticamente
+function actualizarVuelos() {
+  const estados = ["En horario", "Retrasado", "Embarcando", "Último llamado"];
+
+  vuelos.forEach(v => {
+    v.estado = estados[Math.floor(Math.random() * estados.length)];
+  });
+
+  renderVuelos();
+}
+
+// =========================
+// INIT
+// =========================
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderComunas();
+  initMap();
+  renderVuelos();
+
+  // Cotizador
+  const form = document.getElementById('cotizadorForm');
+  if (form) {
+    form.addEventListener('submit', cotizar);
+  }
+
+  // Contacto
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleContactForm);
+  }
+
+  // actualizar vuelos cada 8 segundos
+  setInterval(actualizarVuelos, 8000);
+});

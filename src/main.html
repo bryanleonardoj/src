@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NO SOMOS TOUR - Transporte Aeropuerto SCL</title>
+
+	<link rel="stylesheet" href="css/styles.css">
+
+	<!-- Fuente -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
+	<!-- Leaflet (mapa) -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+	<div class="logo">
+		<img src="img/logo-airport.png" alt="Logo NS TOUR" width="50">
+		<span class="brand">NO SOMOS TOUR</span>
+	</div>
+
+	<nav>
+		<a href="#servicios">Servicios</a>
+		<a href="#cotizar">Cotizar</a>
+		<a href="#mapa">Mapa</a>
+		<a href="#vuelos-section">Vuelos</a>
+		<a href="#contacto">Contacto</a>
+	</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+	<div class="hero-content">
+		<h1>Transporte profesional SCL</h1>
+		<p>Viaja seguro, rápido y con atención personalizada hacia o desde cualquier comuna de Santiago.</p>
+		<a href="#cotizar" class="cta-btn">Cotiza tu traslado</a>
+	</div>
+
+	<img class="hero-img" src="img/vans.png" alt="Imagen principal personalizada">
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+	<h2>Nuestros servicios</h2>
+
+	<div class="servicios-list">
+		<div class="servicio-card">
+			<h3>Sedán Privado</h3>
+			<p>Comodidad para 1-3 pasajeros</p>
+		</div>
+
+		<div class="servicio-card">
+			<h3>SUV Ejecutivo</h3>
+			<p>Experiencia premium</p>
+		</div>
+
+		<div class="servicio-card">
+			<h3>Van (6 personas)</h3>
+			<p>Ideal para grupos</p>
+		</div>
+	</div>
+</section>
+
+<!-- COTIZADOR -->
+<section class="cotizador" id="cotizar">
+	<h2>Cotiza tu traslado</h2>
+
+	<form id="cotizadorForm">
+		<div class="form-group">
+			<label>Comuna destino</label>
+			<select id="comuna">
+				<option value="">-- Seleccionar comuna --</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>Tipo de vehículo</label>
+			<select id="servicio">
+				<option value="privado">Sedán Privado</option>
+				<option value="ejecutivo">SUV Ejecutivo</option>
+				<option value="van">Van</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>Pasajeros</label>
+			<input type="number" id="pasajeros" min="1" max="10" value="1">
+		</div>
+
+		<div class="form-group">
+			<label>Fecha y hora</label>
+			<input type="datetime-local" id="fecha">
+		</div>
+
+		<button type="submit" class="cta-btn">Cotizar traslado</button>
+	</form>
+
+	<div id="resultado" class="result"></div>
+</section>
+
+<!-- MAPA -->
+<section class="mapa" id="mapa">
+	<h2>Mapa de rutas</h2>
+
+	<div id="map" class="map"></div>
+
+	<div class="map-footer">
+		<p id="summary" class="muted">Haz clic en el mapa para seleccionar destino</p>
+	</div>
+</section>
+
+<!-- VUELOS -->
+<section class="vuelos-panel" id="vuelos-section">
+	<h2>Vuelos en tiempo real</h2>
+
+	<div id="vuelos" class="vuelos-list"></div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+	<h2>Contacto</h2>
+
+	<form id="contactForm" class="contact-form">
+		<input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+		<input type="email" id="correo" name="correo" placeholder="Correo" required>
+		<textarea id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
+		<button type="submit" class="cta-btn">Enviar</button>
+		<div id="contactResult" style="margin-top: 10px; display: none;"></div>
+	</form>
+
+	<div class="contact-info">
+		<p>Email: contacto@nosomostour.cl</p>
+		<p>Teléfono: +56 9 1234 5678</p>
+	</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+	<p>© 2026 NO SOMOS TOUR</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
