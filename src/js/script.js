@@ -271,7 +271,73 @@ function observarElementos() {
 }
 
 // =========================
-// INIT
+// COTIZADOR DESTINOS TURÍSTICOS
+// =========================
+
+function cotizarDestino(destino, precioBase) {
+  const resultado = document.getElementById('destinoResultado');
+  
+  if (!resultado) return;
+
+  // Generar número de cotización único
+  const numCotizacion = Math.floor(Math.random() * 100000) + 10000;
+  
+  // Crear la cotización con detalles
+  const fecha = new Date().toLocaleDateString('es-CL');
+  const hora = new Date().toLocaleTimeString('es-CL');
+  
+  const html = `
+    <div class="cotizacion-confirmada">
+      <div class="cotizacion-header">
+        <i class="fas fa-check-circle"></i>
+        <h3>¡Cotización Generada!</h3>
+      </div>
+      <div class="cotizacion-detalles">
+        <div class="detalle-row">
+          <span class="detalle-label">Destino:</span>
+          <span class="detalle-valor">${destino}</span>
+        </div>
+        <div class="detalle-row">
+          <span class="detalle-label">Precio:</span>
+          <span class="detalle-valor precio-destino">$${precioBase.toLocaleString('es-CL')} CLP</span>
+        </div>
+        <div class="detalle-row">
+          <span class="detalle-label">Número de Cotización:</span>
+          <span class="detalle-valor">#${numCotizacion}</span>
+        </div>
+        <div class="detalle-row">
+          <span class="detalle-label">Fecha y Hora:</span>
+          <span class="detalle-valor">${fecha} - ${hora}</span>
+        </div>
+      </div>
+      <div class="cotizacion-acciones">
+        <button class="cotizacion-btn primario" onclick="reservarDestino('${destino}', ${precioBase})">
+          <i class="fas fa-calendar-check"></i> Reservar Ahora
+        </button>
+        <button class="cotizacion-btn secundario" onclick="compartirCotizacion('${destino}', ${precioBase}, '${numCotizacion}')">
+          <i class="fas fa-share-alt"></i> Compartir
+        </button>
+      </div>
+    </div>
+  `;
+  
+  resultado.innerHTML = html;
+  resultado.style.display = 'block';
+  resultado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function reservarDestino(destino, precio) {
+  alert(`Reserva iniciada para ${destino}. Precio: $${precio.toLocaleString('es-CL')} CLP\n\nContáctanos para completar tu reserva.`);
+}
+
+function compartirCotizacion(destino, precio, numCotizacion) {
+  const texto = `¡Acabo de cotizar un viaje a ${destino} con LEOTOUR! Precio: $${precio.toLocaleString('es-CL')} CLP. Cotización #${numCotizacion}. ¿Te gustaría viajar conmigo?`;
+  
+  // Intentar abrir WhatsApp
+  const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
+}
+
 // =========================
 
 window.addEventListener('DOMContentLoaded', () => {

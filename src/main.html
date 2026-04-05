@@ -33,6 +33,7 @@
 		<nav class="nav-menu">
 			<a href="#servicios" class="nav-link">Servicios</a>
 			<a href="#cotizar" class="nav-link">Cotizar</a>
+			<a href="#destinos" class="nav-link">Destinos</a>
 			<a href="#mapa" class="nav-link">Mapa</a>
 			<a href="#vuelos-section" class="nav-link">Vuelos</a>
 			<a href="#contacto" class="nav-link">Contacto</a>
@@ -67,14 +68,26 @@
 	<div class="servicios-list">
 		<div class="servicio-card">
 			<div class="servicio-icon sedan-icon">
-				<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" class="car-svg">
-					<ellipse cx="50" cy="42" rx="45" ry="8" fill="#17999C" opacity="0.2"/>
-					<path d="M 25 35 L 30 20 Q 30 15 35 15 L 65 15 Q 70 15 70 20 L 75 35" fill="#17999C" stroke="#17999C" stroke-width="2" stroke-linejoin="round"/>
-					<rect x="25" y="35" width="50" height="12" rx="2" fill="#17999C"/>
-					<circle cx="35" cy="47" r="5" fill="#0f172a" stroke="#17999C" stroke-width="1.5"/>
-					<circle cx="65" cy="47" r="5" fill="#0f172a" stroke="#17999C" stroke-width="1.5"/>
-					<rect x="28" y="18" width="15" height="8" rx="1" fill="rgba(255, 165, 0, 0.3)"/>
-					<rect x="57" y="18" width="15" height="8" rx="1" fill="rgba(255, 165, 0, 0.3)"/>
+				<svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg" class="car-svg">
+					<!-- Sombra -->
+					<ellipse cx="60" cy="58" rx="50" ry="10" fill="#17999C" opacity="0.15"/>
+					<!-- Ruedas trasera -->
+					<circle cx="35" cy="55" r="8" fill="#0f172a" stroke="#17999C" stroke-width="2"/>
+					<circle cx="35" cy="55" r="5" fill="#17999C" opacity="0.3"/>
+					<!-- Rueda delantera -->
+					<circle cx="85" cy="55" r="8" fill="#0f172a" stroke="#17999C" stroke-width="2"/>
+					<circle cx="85" cy="55" r="5" fill="#17999C" opacity="0.3"/>
+					<!-- Cuerpo principal -->
+					<path d="M 30 40 Q 28 28 35 20 L 85 20 Q 92 28 90 40 Z" fill="#17999C" stroke="#17999C" stroke-width="2.5" stroke-linejoin="round"/>
+					<!-- Base -->
+					<rect x="28" y="40" width="64" height="15" rx="3" fill="#17999C"/>
+					<!-- Ventanas -->
+					<rect x="40" y="22" width="16" height="12" rx="2" fill="rgba(255, 165, 0, 0.4)" stroke="#FFA500" stroke-width="1"/>
+					<rect x="64" y="22" width="16" height="12" rx="2" fill="rgba(255, 165, 0, 0.4)" stroke="#FFA500" stroke-width="1"/>
+					<!-- Faro -->
+					<circle cx="28" cy="32" r="3" fill="#fbbf24" opacity="0.8"/>
+					<!-- Lineas de detalle -->
+					<line x1="30" y1="40" x2="90" y2="40" stroke="#0f172a" stroke-width="1" opacity="0.3"/>
 				</svg>
 			</div>
 			<h3>Sedán Privado</h3>
@@ -88,14 +101,27 @@
 
 		<div class="servicio-card">
 			<div class="servicio-icon suv-icon">
-				<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" class="car-svg">
-					<ellipse cx="50" cy="42" rx="45" ry="8" fill="#FFA500" opacity="0.2"/>
-					<path d="M 20 38 L 25 15 Q 25 10 30 10 L 70 10 Q 75 10 75 15 L 80 38" fill="#FFA500" stroke="#FFA500" stroke-width="2" stroke-linejoin="round"/>
-					<rect x="20" y="38" width="60" height="14" rx="2" fill="#FFA500"/>
-					<circle cx="32" cy="52" r="6" fill="#0f172a" stroke="#FFA500" stroke-width="1.5"/>
-					<circle cx="68" cy="52" r="6" fill="#0f172a" stroke="#FFA500" stroke-width="1.5"/>
-					<rect x="25" y="12" width="18" height="10" rx="1" fill="rgba(23, 153, 156, 0.3)"/>
-					<rect x="57" y="12" width="18" height="10" rx="1" fill="rgba(23, 153, 156, 0.3)"/>
+				<svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg" class="car-svg">
+					<!-- Sombra -->
+					<ellipse cx="60" cy="58" rx="52" ry="11" fill="#FFA500" opacity="0.15"/>
+					<!-- Ruedas trasera -->
+					<circle cx="32" cy="56" r="9" fill="#0f172a" stroke="#FFA500" stroke-width="2.5"/>
+					<circle cx="32" cy="56" r="6" fill="#FFA500" opacity="0.4"/>
+					<!-- Rueda delantera -->
+					<circle cx="88" cy="56" r="9" fill="#0f172a" stroke="#FFA500" stroke-width="2.5"/>
+					<circle cx="88" cy="56" r="6" fill="#FFA500" opacity="0.4"/>
+					<!-- Cuerpo principal SUV (mas alto) -->
+					<path d="M 25 42 Q 22 25 32 15 L 88 15 Q 98 25 95 42 Z" fill="#FFA500" stroke="#FFA500" stroke-width="2.5" stroke-linejoin="round"/>
+					<!-- Base robusta -->
+					<rect x="23" y="42" width="74" height="14" rx="3" fill="#FFA500"/>
+					<!-- Ventanas grandes -->
+					<rect x="38" y="18" width="19" height="16" rx="2" fill="rgba(23, 153, 156, 0.4)" stroke="#17999C" stroke-width="1.5"/>
+					<rect x="63" y="18" width="19" height="16" rx="2" fill="rgba(23, 153, 156, 0.4)" stroke="#17999C" stroke-width="1.5"/>
+					<!-- Faros dobles -->
+					<circle cx="23" cy="28" r="3.5" fill="#fbbf24" opacity="0.9"/>
+					<circle cx="23" cy="35" r="2.5" fill="#fbbf24" opacity="0.7"/>
+					<!-- Linea divisoria -->
+					<line x1="25" y1="42" x2="95" y2="42" stroke="#0f172a" stroke-width="1.5" opacity="0.4"/>
 				</svg>
 			</div>
 			<h3>SUV Ejecutivo</h3>
@@ -109,14 +135,29 @@
 
 		<div class="servicio-card">
 			<div class="servicio-icon van-icon">
-				<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" class="car-svg">
-					<ellipse cx="50" cy="42" rx="45" ry="8" fill="#17999C" opacity="0.2"/>
-					<path d="M 18 38 L 22 12 Q 22 8 27 8 L 73 8 Q 78 8 78 12 L 82 38" fill="#17999C" stroke="#17999C" stroke-width="2" stroke-linejoin="round"/>
-					<rect x="18" y="38" width="64" height="15" rx="2" fill="#17999C"/>
-					<circle cx="30" cy="53" r="6.5" fill="#0f172a" stroke="#17999C" stroke-width="1.5"/>
-					<circle cx="70" cy="53" r="6.5" fill="#0f172a" stroke="#17999C" stroke-width="1.5"/>
-					<rect x="25" y="10" width="20" height="12" rx="1" fill="rgba(255, 165, 0, 0.3)"/>
-					<rect x="55" y="10" width="20" height="12" rx="1" fill="rgba(255, 165, 0, 0.3)"/>
+				<svg viewBox="0 0 130 70" xmlns="http://www.w3.org/2000/svg" class="car-svg">
+					<!-- Sombra -->
+					<ellipse cx="65" cy="58" rx="58" ry="11" fill="#17999C" opacity="0.15"/>
+					<!-- Ruedas trasera -->
+					<circle cx="28" cy="56" r="9.5" fill="#0f172a" stroke="#17999C" stroke-width="2.5"/>
+					<circle cx="28" cy="56" r="6" fill="#17999C" opacity="0.4"/>
+					<circle cx="45" cy="56" r="9.5" fill="#0f172a" stroke="#17999C" stroke-width="2.5"/>
+					<circle cx="45" cy="56" r="6" fill="#17999C" opacity="0.4"/>
+					<!-- Rueda delantera -->
+					<circle cx="102" cy="56" r="9.5" fill="#0f172a" stroke="#17999C" stroke-width="2.5"/>
+					<circle cx="102" cy="56" r="6" fill="#17999C" opacity="0.4"/>
+					<!-- Cuerpo principal VAN (largo y espacioso) -->
+					<path d="M 20 42 Q 18 24 28 12 L 102 12 Q 112 24 110 42 Z" fill="#17999C" stroke="#17999C" stroke-width="2.5" stroke-linejoin="round"/>
+					<!-- Base extendida -->
+					<rect x="18" y="42" width="94" height="14" rx="3" fill="#17999C"/>
+					<!-- Ventanas múltiples -->
+					<rect x="35" y="15" width="14" height="14" rx="1.5" fill="rgba(255, 165, 0, 0.35)" stroke="#FFA500" stroke-width="1"/>
+					<rect x="55" y="15" width="14" height="14" rx="1.5" fill="rgba(255, 165, 0, 0.35)" stroke="#FFA500" stroke-width="1"/>
+					<rect x="75" y="15" width="14" height="14" rx="1.5" fill="rgba(255, 165, 0, 0.35)" stroke="#FFA500" stroke-width="1"/>
+					<!-- Faros -->
+					<circle cx="18" cy="30" r="3" fill="#fbbf24" opacity="0.85"/>
+					<!-- Decoración lateral -->
+					<line x1="20" y1="42" x2="110" y2="42" stroke="#0f172a" stroke-width="1" opacity="0.3"/>
 				</svg>
 			</div>
 			<h3>Van (6 personas)</h3>
@@ -167,6 +208,112 @@
 	</form>
 
 	<div id="resultado" class="result"></div>
+</section>
+
+<!-- DESTINOS TURÍSTICOS -->
+<section class="destinos-section" id="destinos">
+	<h2>Destinos Turísticos Chile</h2>
+	<p class="destinos-subtitle">Descubre los mejores lugares de Chile con LEOTOUR</p>
+
+	<div class="destinos-grid">
+		<div class="destino-card">
+			<div class="destino-img" style="background: linear-gradient(135deg, #17999C 0%, #11656f 100%); position: relative;">
+				<i class="fas fa-water"></i>
+				<span class="destino-label">Cartagena</span>
+			</div>
+			<div class="destino-info">
+				<h3>Cartagena</h3>
+				<p>Puerto histórico con playas y vistas al mar</p>
+				<div class="destino-price">
+					<span class="price">$45.000 CLP</span>
+					<span class="distance">45 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Cartagena', 45000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background: linear-gradient(135deg, #FF8C5A 0%, #FFA500 100%); position: relative;">
+				<i class="fas fa-landmark"></i>
+				<span class="destino-label">Valparaíso</span>
+			</div>
+			<div class="destino-info">
+				<h3>Valparaíso</h3>
+				<p>Ciudad vibrante con cerros coloridos y arte</p>
+				<div class="destino-price">
+					<span class="price">$35.000 CLP</span>
+					<span class="distance">120 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Valparaíso', 35000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); position: relative;">
+				<i class="fas fa-sun"></i>
+				<span class="destino-label">San Antonio</span>
+			</div>
+			<div class="destino-info">
+				<h3>San Antonio</h3>
+				<p>Puerto pesquero con playas tranquilas</p>
+				<div class="destino-price">
+					<span class="price">$55.000 CLP</span>
+					<span class="distance">100 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('San Antonio', 55000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); position: relative;">
+				<i class="fas fa-tree"></i>
+				<span class="destino-label">Pomaire</span>
+			</div>
+			<div class="destino-info">
+				<h3>Pomaire</h3>
+				<p>Pueblo típico con cerámica artesanal</p>
+				<div class="destino-price">
+					<span class="price">$65.000 CLP</span>
+					<span class="distance">60 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Pomaire', 65000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%); position: relative;">
+				<i class="fas fa-mountain"></i>
+				<span class="destino-label">Cajón del Maipo</span>
+			</div>
+			<div class="destino-info">
+				<h3>Cajón del Maipo</h3>
+				<p>Montañas, ríos y naturaleza pura</p>
+				<div class="destino-price">
+					<span class="price">$50.000 CLP</span>
+					<span class="distance">50 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Cajón del Maipo', 50000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); position: relative;">
+				<i class="fas fa-apple-alt"></i>
+				<span class="destino-label">Pirque (Viñas)</span>
+			</div>
+			<div class="destino-info">
+				<h3>Pirque (Viñas)</h3>
+				<p>Degustación de vinos y paisajes agrícolas</p>
+				<div class="destino-price">
+					<span class="price">$40.000 CLP</span>
+					<span class="distance">35 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Pirque', 40000)">Cotizar</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="destinoResultado" class="result" style="margin-top: 30px;"></div>
 </section>
 
 <!-- MAPA -->
