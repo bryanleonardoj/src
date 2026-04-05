@@ -1,4 +1,34 @@
 // =========================
+// NAVBAR HAMBURGUESA
+// =========================
+
+function initNavbar() {
+	const hamburger = document.querySelector('.hamburger');
+	const navMenu = document.querySelector('.nav-menu');
+	const navLinks = document.querySelectorAll('.nav-link');
+
+	if (!hamburger) return;
+
+	hamburger.addEventListener('click', () => {
+		hamburger.classList.toggle('active');
+		navMenu.classList.toggle('active');
+	});
+
+	navLinks.forEach(link => {
+		link.addEventListener('click', () => {
+			hamburger.classList.remove('active');
+			navMenu.classList.remove('active');
+		});
+	});
+
+	// Cerrar menú al hacer scroll
+	document.addEventListener('scroll', () => {
+		hamburger.classList.remove('active');
+		navMenu.classList.remove('active');
+	});
+}
+
+// =========================
 // DATOS
 // =========================
 
@@ -209,10 +239,38 @@ function actualizarVuelos() {
 }
 
 // =========================
+// OBSERVADOR DE ELEMENTOS (SCROLL ANIMATIONS)
+// =========================
+
+function observarElementos() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  // Observar todos los elementos con animación
+  document.querySelectorAll('.servicio-card, .vuelo-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(el);
+  });
+}
+
+// =========================
 // INIT
 // =========================
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Inicializar navbar
+  initNavbar();
+
   renderComunas();
   initMap();
   renderVuelos();
@@ -229,6 +287,9 @@ window.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', handleContactForm);
   }
 
-  // actualizar vuelos cada 8 segundos
+  // Actualizar vuelos cada 8 segundos
   setInterval(actualizarVuelos, 8000);
+
+  // Iniciar scroll animations
+  observarElementos();
 });

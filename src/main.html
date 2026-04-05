@@ -10,6 +10,9 @@
 	<!-- Fuente -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 	<!-- Leaflet (mapa) -->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
@@ -18,18 +21,26 @@
 
 <!-- NAVBAR -->
 <header class="navbar">
-	<div class="logo">
-		<img src="img/logo-airport.png" alt="Logo NS TOUR" width="50">
-		<span class="brand">NO SOMOS TOUR</span>
-	</div>
+	<div class="navbar-container">
+		<div class="logo">
+			<img src="img/logo-airport.png" alt="Logo NS TOUR" width="50">
+			<span class="brand">NO SOMOS TOUR</span>
+		</div>
 
-	<nav>
-		<a href="#servicios">Servicios</a>
-		<a href="#cotizar">Cotizar</a>
-		<a href="#mapa">Mapa</a>
-		<a href="#vuelos-section">Vuelos</a>
-		<a href="#contacto">Contacto</a>
-	</nav>
+		<nav class="nav-menu">
+			<a href="#servicios" class="nav-link">Servicios</a>
+			<a href="#cotizar" class="nav-link">Cotizar</a>
+			<a href="#mapa" class="nav-link">Mapa</a>
+			<a href="#vuelos-section" class="nav-link">Vuelos</a>
+			<a href="#contacto" class="nav-link">Contacto</a>
+		</nav>
+
+		<div class="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
 </header>
 
 <!-- HERO -->
@@ -49,18 +60,36 @@
 
 	<div class="servicios-list">
 		<div class="servicio-card">
+			<div class="servicio-icon"><i class="fas fa-car"></i></div>
 			<h3>Sedán Privado</h3>
 			<p>Comodidad para 1-3 pasajeros</p>
+			<ul class="servicio-features">
+				<li><i class="fas fa-check"></i> GPS Rastreado</li>
+				<li><i class="fas fa-check"></i> Conductor profesional</li>
+				<li><i class="fas fa-check"></i> WiFi gratis</li>
+			</ul>
 		</div>
 
 		<div class="servicio-card">
+			<div class="servicio-icon"><i class="fas fa-suv"></i></div>
 			<h3>SUV Ejecutivo</h3>
 			<p>Experiencia premium</p>
+			<ul class="servicio-features">
+				<li><i class="fas fa-check"></i> Clima Premium</li>
+				<li><i class="fas fa-check"></i> Minibar</li>
+				<li><i class="fas fa-check"></i> Prensa/TV</li>
+			</ul>
 		</div>
 
 		<div class="servicio-card">
+			<div class="servicio-icon"><i class="fas fa-van-shuttle"></i></div>
 			<h3>Van (6 personas)</h3>
 			<p>Ideal para grupos</p>
+			<ul class="servicio-features">
+				<li><i class="fas fa-check"></i> Espacioso y cómodo</li>
+				<li><i class="fas fa-check"></i> Maletero grande</li>
+				<li><i class="fas fa-check"></i> Entretenimiento</li>
+			</ul>
 		</div>
 	</div>
 </section>
@@ -69,16 +98,16 @@
 <section class="cotizador" id="cotizar">
 	<h2>Cotiza tu traslado</h2>
 
-	<form id="cotizadorForm">
+	<form id="cotizadorForm" class="form-container">
 		<div class="form-group">
-			<label>Comuna destino</label>
+			<label><i class="fas fa-map-marker-alt"></i> Comuna destino</label>
 			<select id="comuna">
 				<option value="">-- Seleccionar comuna --</option>
 			</select>
 		</div>
 
 		<div class="form-group">
-			<label>Tipo de vehículo</label>
+			<label><i class="fas fa-car-side"></i> Tipo de vehículo</label>
 			<select id="servicio">
 				<option value="privado">Sedán Privado</option>
 				<option value="ejecutivo">SUV Ejecutivo</option>
@@ -86,14 +115,16 @@
 			</select>
 		</div>
 
-		<div class="form-group">
-			<label>Pasajeros</label>
-			<input type="number" id="pasajeros" min="1" max="10" value="1">
-		</div>
+		<div class="form-row">
+			<div class="form-group">
+				<label><i class="fas fa-users"></i> Pasajeros</label>
+				<input type="number" id="pasajeros" min="1" max="10" value="1">
+			</div>
 
-		<div class="form-group">
-			<label>Fecha y hora</label>
-			<input type="datetime-local" id="fecha">
+			<div class="form-group">
+				<label><i class="fas fa-calendar-alt"></i> Fecha y hora</label>
+				<input type="datetime-local" id="fecha">
+			</div>
 		</div>
 
 		<button type="submit" class="cta-btn">Cotizar traslado</button>
