@@ -213,7 +213,10 @@ function initMap() {
 const vuelos = [
   { vuelo: "LA123", destino: "Antofagasta", hora: "10:30", estado: "En horario" },
   { vuelo: "SK456", destino: "Concepción", hora: "11:15", estado: "Retrasado" },
-  { vuelo: "JA789", destino: "Puerto Montt", hora: "12:00", estado: "Embarcando" }
+  { vuelo: "JA789", destino: "Puerto Montt", hora: "12:00", estado: "Embarcando" },
+  { vuelo: "UA234", destino: "Iquique", hora: "13:45", estado: "En horario" },
+  { vuelo: "AR567", destino: "Punta Arenas", hora: "14:20", estado: "Embarcando" },
+  { vuelo: "VB890", destino: "Calama", hora: "15:00", estado: "Retrasado" }
 ];
 
 function renderVuelos() {
@@ -222,9 +225,10 @@ function renderVuelos() {
 
   cont.innerHTML = vuelos.map(v => `
     <div class="vuelo-item">
-      <div><strong>${v.vuelo}</strong></div>
+      <div>${v.vuelo}</div>
       <div>${v.destino}</div>
       <div>${v.hora}</div>
+      <div>Aeropuerto SCL</div>
       <div class="estado">${v.estado}</div>
     </div>
   `).join('');

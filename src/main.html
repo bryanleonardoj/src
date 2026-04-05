@@ -48,12 +48,15 @@
 
 <!-- HERO -->
 <section class="hero">
+	<div class="hero-overlay"></div>
 	<div class="hero-content">
-		<h1>Transporte profesional SCL</h1>
-		<p>Viaja seguro, rápido y con atención personalizada hacia o desde cualquier comuna de Santiago.</p>
-		<a href="#cotizar" class="cta-btn">Cotiza tu traslado</a>
+		<h1 class="hero-title">Viaja con LEOTOUR</h1>
+		<p class="hero-subtitle">Transporte profesional SCL - Confiable, seguro y a tiempo</p>
+		<div class="hero-ctas">
+			<a href="#cotizar" class="cta-btn primary"><i class="fas fa-check-circle"></i> Reservar ahora</a>
+			<a href="#servicios" class="cta-btn secondary"><i class="fas fa-info-circle"></i> Conocer servicios</a>
+		</div>
 	</div>
-
 	<img class="hero-img" src="img/leotour-van.png" alt="Imagen principal LEOTOUR">
 </section>
 
@@ -149,9 +152,16 @@
 
 <!-- VUELOS -->
 <section class="vuelos-panel" id="vuelos-section">
-	<h2>Vuelos en tiempo real</h2>
+	<div class="vuelos-header">
+		<h2><i class="fas fa-plane"></i> Vuelos en tiempo real - Aeropuerto AMB</h2>
+		<p class="vuelos-info">Información actualizada cada 30 segundos</p>
+	</div>
 
-	<div id="vuelos" class="vuelos-list"></div>
+	<div class="vuelos-container">
+		<div class="vuelos-display">
+			<div id="vuelos" class="vuelos-board"></div>
+		</div>
+	</div>
 </section>
 
 <!-- CONTACTO -->
