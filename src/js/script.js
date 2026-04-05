@@ -118,23 +118,9 @@ function cotizar(e) {
     <span style="font-size:1.4em;color:#22c55e">
       Total estimado: $${Math.round(precio).toLocaleString('es-CL')}
     </span>
-  `;
-
-  document.getElementById('resultado').innerHTML = msg;
-}
-
-// =========================
-// CONTACTO
-// =========================
-
-function handleContactForm(e) {
-  e.preventDefault();
-
-  const nombre = document.getElementById('nombre').value.trim();
-  const correo = document.getElementById('correo').value.trim();
-  const mensaje = document.getElementById('mensaje').value.trim();
-
-  // Validaciones
+    <p style="margin-top: 15px; color: #94a3b8; font-size: 0.9em;">
+      <i class="fas fa-info-circle"></i> Reserva ahora con LEOTOUR
+    </p>
   if (!nombre || nombre.length < 2) {
     alert("Por favor ingresa un nombre válido");
     return;
