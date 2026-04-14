@@ -1,48 +1,40 @@
-# My Web Project
+# LEOTOUR - Transporte Aeropuerto SCL 🚗
 
-## Overview
-This project is a simple web application that demonstrates the use of HTML, CSS, and JavaScript. It serves as a template for building more complex web applications.
+## 📌 Descripción
+Plataforma web moderna para reserva de transporte de aeropuerto en Santiago de Chile. Reserva segura, rápida y confiable con LEOTOUR.
 
-## Project Structure
+## ✨ Características
+- 🚙 Múltiples opciones de vehículos (Sedán, Ejecutivo, Van)
+- 💰 Cotizador de precios en tiempo real
+- 🗺️ Mapa interactivo con Leaflet
+- ✉️ Formulario de contacto validado
+- 📱 Diseño responsive mobile-first
+- 🎨 Interfaz moderna con tema claro
+
+## 🛠️ Tecnologías
+- **HTML5** - Estructura semántica
+- **CSS3** - Estilos modernos con gradientes y animaciones
+- **JavaScript Vanilla** - Funcionalidades interactivas
+- **Leaflet** - Mapas interactivos
+
+## 📂 Estructura
 ```
-my-web-project
-├── src
-│   ├── index.html        # Main HTML document
-│   ├── css
-│   │   └── styles.css    # Styles for the web project
-│   └── js
-│       └── script.js     # JavaScript code for interactivity
-├── .gitignore            # Specifies files to ignore in Git
-├── package.json          # npm configuration file
-└── README.md             # Project documentation
+src/
+├── main.html          # Página principal
+├── css/
+│   └── styles.css    # Estilos completos
+├── js/
+│   └── script.js     # Lógica de la aplicación
+└── img/              # Imágenes y recursos
 ```
 
-## Getting Started
+## 🚀 Inicio Rápido
+1. Clonar el repositorio
+2. Abrir `main.html` en el navegador
+3. ¡Listo! La aplicación está lista para usar
 
-### Prerequisites
-- Node.js and npm installed on your machine.
+## 📞 Contacto
+Para más información, completa el formulario de contacto en la web.
 
-### Installation
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   ```
-2. Navigate to the project directory:
-   ```
-   cd my-web-project
-   ```
-3. Install dependencies:
-   ```
-   npm install
-   ```
-
-### Usage
-- Open `src/index.html` in your web browser to view the application.
-- Modify the CSS in `src/css/styles.css` to change the appearance.
-- Update the JavaScript in `src/js/script.js` to add interactivity.
-
-## Contributing
-Feel free to submit issues or pull requests for improvements or bug fixes.
-
-## License
-This project is licensed under the MIT License.
+---
+**Estado:** Activo - Actualizado Abril 2026
