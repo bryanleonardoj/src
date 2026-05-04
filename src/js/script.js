@@ -339,6 +339,268 @@ function compartirCotizacion(destino, precio, numCotizacion) {
 }
 
 // =========================
+// VALIDACIÓN FORMULARIO DE REGISTRO
+// =========================
+
+function validarRegistro(e) {
+  // Prevenir envío del formulario sin validar
+  e.preventDefault();
+
+  // Capturar valores del formulario usando querySelector/getElementById
+  const usuario = document.getElementById('regUsuario').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const password = document.getElementById('regPassword').value;
+  const passwordConfirm = document.getElementById('regPasswordConfirm').value;
+
+  // Limpiar mensajes de error anteriores
+  limpiarErroresRegistro();
+
+  let tieneErrores = false;
+
+  // VALIDACIÓN 1: Usuario no vacío
+  if (!usuario || usuario.length < 3) {
+    mostrarError('error-usuario', 'El usuario debe tener al menos 3 caracteres');
+    tieneErrores = true;
+  }
+
+  // VALIDACIÓN 2: Email válido con regex
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !regexEmail.test(email)) {
+    mostrarError('error-email', 'Por favor ingresa un email válido (ej: usuario@email.com)');
+    tieneErrores = true;
+  }
+
+  // VALIDACIÓN 3: Contraseña mínimo 8 caracteres
+  if (!password || password.length < 8) {
+    mostrarError('error-password', 'La contraseña debe tener mínimo 8 caracteres');
+    tieneErrores = true;
+  }
+
+  // VALIDACIÓN 4: Confirmación de contraseña debe ser idéntica
+  if (password !== passwordConfirm) {
+    mostrarError('error-passwordConfirm', 'Las contraseñas no coinciden');
+    tieneErrores = true;
+  }
+
+  // Si hay errores, mostrarlos en pantalla y no continuar
+  if (tieneErrores) {
+    return;
+  }
+
+  // Si todas las validaciones pasaron: mostrar mensaje de éxito
+  const resultDiv = document.getElementById('registroResult');
+  resultDiv.className = 'result-msg success';
+  resultDiv.innerHTML = `
+    <div class="success-message">
+      <i class="fas fa-check-circle"></i>
+      <strong>¡Registro exitoso!</strong>
+      <p>Bienvenido ${usuario}, tu cuenta ha sido creada correctamente.</p>
+    </div>
+  `;
+
+  // Limpiar el formulario después del éxito
+  document.getElementById('registroForm').reset();
+
+  // Ocultar el mensaje después de 4 segundos
+  setTimeout(() => {
+    resultDiv.className = 'result-msg';
+    resultDiv.innerHTML = '';
+  }, 4000);
+}
+
+// Función auxiliar para mostrar errores en tiempo real
+function mostrarError(elementId, mensaje) {
+  const errorElement = document.getElementById(elementId);
+  if (errorElement) {
+    errorElement.textContent = mensaje;
+    errorElement.style.display = 'block';
+  }
+}
+
+// Función para limpiar todos los errores del registro
+function limpiarErroresRegistro() {
+  const errores = [
+    'error-usuario',
+    'error-email',
+    'error-password',
+    'error-passwordConfirm'
+  ];
+  
+  errores.forEach(id => {
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.textContent = '';
+      elem.style.display = 'none';
+    }
+  });
+}
+
+// =========================
+// VALIDACIÓN FORMULARIO DE LOGIN
+// =========================
+
+function validarLogin(e) {
+  // Prevenir envío del formulario sin validar
+  e.preventDefault();
+
+  // Capturar valores del formulario
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  // Limpiar mensajes de error anteriores
+  limpiarErroresLogin();
+
+  let tieneErrores = false;
+
+  // VALIDACIÓN 1: Email obligatorio y válido
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !regexEmail.test(email)) {
+    mostrarError('error-login-email', 'Por favor ingresa un email válido');
+    tieneErrores = true;
+  }
+
+  // VALIDACIÓN 2: Contraseña obligatoria
+  if (!password || password.length === 0) {
+    mostrarError('error-login-password', 'Por favor ingresa tu contraseña');
+    tieneErrores = true;
+  }
+
+  // Si hay errores, mostrarlos en pantalla
+  if (tieneErrores) {
+    return;
+  }
+
+  // Si todas las validaciones pasaron: mostrar mensaje de éxito
+  const resultDiv = document.getElementById('loginResult');
+  resultDiv.className = 'result-msg success';
+  resultDiv.innerHTML = `
+    <div class="success-message">
+      <i class="fas fa-sign-in-alt"></i>
+      <strong>¡Bienvenido!</strong>
+      <p>Sesión iniciada correctamente con ${email}</p>
+    </div>
+  `;
+
+  // Limpiar el formulario después del éxito
+  document.getElementById('loginForm').reset();
+
+  // Ocultar el mensaje después de 4 segundos
+  setTimeout(() => {
+    resultDiv.className = 'result-msg';
+    resultDiv.innerHTML = '';
+  }, 4000);
+}
+
+// Función para limpiar todos los errores del login
+function limpiarErroresLogin() {
+  const errores = [
+    'error-login-email',
+    'error-login-password'
+  ];
+  
+  errores.forEach(id => {
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.textContent = '';
+      elem.style.display = 'none';
+    }
+  });
+}
+
+// =========================
+// VALIDACIÓN FORMULARIO DE CONTACTO (MEJORADO)
+// =========================
+
+function validarContacto(e) {
+  // Prevenir envío del formulario sin validar
+  e.preventDefault();
+
+  // Capturar valores del formulario
+  const nombre = document.getElementById('contactNombre').value.trim();
+  const asunto = document.getElementById('contactAsunto').value.trim();
+  const mensaje = document.getElementById('contactMensaje').value.trim();
+
+  // Limpiar mensajes de error anteriores
+  limpiarErroresContacto();
+
+  let tieneErrores = false;
+
+  // VALIDACIÓN 1: Nombre no vacío
+  if (!nombre || nombre.length < 3) {
+    mostrarError('error-contacto-nombre', 'El nombre debe tener al menos 3 caracteres');
+    tieneErrores = true;
+  }
+
+  // VALIDACIÓN 2: Asunto no vacío
+  if (!asunto || asunto.length < 5) {
+    mostrarError('error-contacto-asunto', 'El asunto debe tener al menos 5 caracteres');
+    tieneErrores = true;
+  }
+
+  // VALIDACIÓN 3: Mensaje no vacío y mínimo de caracteres
+  if (!mensaje || mensaje.length < 10) {
+    mostrarError('error-contacto-mensaje', 'El mensaje debe tener al menos 10 caracteres');
+    tieneErrores = true;
+  }
+
+  // Si hay errores, mostrarlos en pantalla
+  if (tieneErrores) {
+    return;
+  }
+
+  // Si todas las validaciones pasaron: mostrar mensaje de éxito
+  const resultDiv = document.getElementById('contactResult');
+  resultDiv.className = 'result-msg success';
+  resultDiv.innerHTML = `
+    <div class="success-message">
+      <i class="fas fa-paper-plane"></i>
+      <strong>¡Mensaje enviado!</strong>
+      <p>Gracias ${nombre}, nos pondremos en contacto pronto a través de tu mensaje.</p>
+    </div>
+  `;
+
+  // Limpiar el formulario después del éxito
+  document.getElementById('contactForm').reset();
+
+  // Resetear contador de caracteres
+  document.getElementById('charCount').textContent = '0';
+
+  // Ocultar el mensaje después de 4 segundos
+  setTimeout(() => {
+    resultDiv.className = 'result-msg';
+    resultDiv.innerHTML = '';
+  }, 4000);
+}
+
+// Función para limpiar todos los errores del contacto
+function limpiarErroresContacto() {
+  const errores = [
+    'error-contacto-nombre',
+    'error-contacto-asunto',
+    'error-contacto-mensaje'
+  ];
+  
+  errores.forEach(id => {
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.textContent = '';
+      elem.style.display = 'none';
+    }
+  });
+}
+
+// Función para actualizar el contador de caracteres EN TIEMPO REAL
+function actualizarContadorCaracteres() {
+  const textarea = document.getElementById('contactMensaje');
+  const charCount = document.getElementById('charCount');
+  
+  if (textarea && charCount) {
+    // Actualizar el contador con la cantidad actual de caracteres
+    charCount.textContent = textarea.value.length;
+  }
+}
+
+// =========================
 
 window.addEventListener('DOMContentLoaded', () => {
   // Inicializar navbar
@@ -348,16 +610,35 @@ window.addEventListener('DOMContentLoaded', () => {
   initMap();
   renderVuelos();
 
+  // ===== FORMULARIO DE REGISTRO =====
+  const registroForm = document.getElementById('registroForm');
+  if (registroForm) {
+    registroForm.addEventListener('submit', validarRegistro);
+  }
+
+  // ===== FORMULARIO DE LOGIN =====
+  const loginForm = document.getElementById('loginForm');
+  if (loginForm) {
+    loginForm.addEventListener('submit', validarLogin);
+  }
+
+  // ===== FORMULARIO DE CONTACTO =====
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', validarContacto);
+  }
+
+  // ===== CONTADOR DE CARACTERES EN TIEMPO REAL =====
+  const contactMensaje = document.getElementById('contactMensaje');
+  if (contactMensaje) {
+    // Actualizar contador cada vez que el usuario escribe
+    contactMensaje.addEventListener('input', actualizarContadorCaracteres);
+  }
+
   // Cotizador
   const form = document.getElementById('cotizadorForm');
   if (form) {
     form.addEventListener('submit', cotizar);
-  }
-
-  // Contacto
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', handleContactForm);
   }
 
   // Actualizar vuelos cada 8 segundos
