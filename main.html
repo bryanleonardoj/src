@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LEOTOUR - Transporte Aeropuerto SCL</title>
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="img/leotour.ico">
+	<link rel="shortcut icon" href="img/leotour.ico">
+
+	<link rel="stylesheet" href="css/styles.css">
+
+	<!-- Fuente -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+	<!-- Leaflet (mapa) -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+	<div class="navbar-container">
+		<div class="logo">
+		<img src="img/leotour-logo.png" alt="Logo LEOTOUR" width="50">
+		<span class="brand">LEOTOUR</span>
+
+		<nav class="nav-menu">
+			<a href="#servicios" class="nav-link">Servicios</a>
+			<a href="#cotizar" class="nav-link">Cotizar</a>
+			<a href="#destinos" class="nav-link">Destinos</a>
+			<a href="#mapa" class="nav-link">Mapa</a>
+			<a href="#vuelos-section" class="nav-link">Vuelos</a>
+			<a href="#contacto" class="nav-link">Contacto</a>
+		</nav>
+
+		<div class="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+	<div class="hero-overlay"></div>
+	<div class="hero-content">
+		<h1 class="hero-title">Viaja con LEOTOUR-2026</h1>
+		<p class="hero-subtitle">Transporte profesional SCL - Confiable, seguro y a tiempo</p>
+		<div class="hero-ctas">
+			<a href="#cotizar" class="cta-btn primary"><i class="fas fa-check-circle"></i> Reservar ahora</a>
+			<a href="#servicios" class="cta-btn secondary"><i class="fas fa-info-circle"></i> Conocer servicios</a>
+		</div>
+	</div>
+	<img class="hero-img" src="img/leotour-van.png" alt="Imagen principal LEOTOUR">
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+	<h2>Nuestros servicios</h2>
+
+	<div class="servicios-list">
+		<div class="servicio-card">
+			<div class="servicio-icon sedan-icon">
+				<svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg" class="car-svg">
+					<!-- Sombra -->
+					<ellipse cx="60" cy="58" rx="50" ry="10" fill="#17999C" opacity="0.15"/>
+					<!-- Ruedas trasera -->
+					<circle cx="35" cy="55" r="8" fill="#0f172a" stroke="#17999C" stroke-width="2"/>
+					<circle cx="35" cy="55" r="5" fill="#17999C" opacity="0.3"/>
+					<!-- Rueda delantera -->
+					<circle cx="85" cy="55" r="8" fill="#0f172a" stroke="#17999C" stroke-width="2"/>
+					<circle cx="85" cy="55" r="5" fill="#17999C" opacity="0.3"/>
+					<!-- Cuerpo principal -->
+					<path d="M 30 40 Q 28 28 35 20 L 85 20 Q 92 28 90 40 Z" fill="#17999C" stroke="#17999C" stroke-width="2.5" stroke-linejoin="round"/>
+					<!-- Base -->
+					<rect x="28" y="40" width="64" height="15" rx="3" fill="#17999C"/>
+					<!-- Ventanas -->
+					<rect x="40" y="22" width="16" height="12" rx="2" fill="rgba(255, 165, 0, 0.4)" stroke="#FFA500" stroke-width="1"/>
+					<rect x="64" y="22" width="16" height="12" rx="2" fill="rgba(255, 165, 0, 0.4)" stroke="#FFA500" stroke-width="1"/>
+					<!-- Faro -->
+					<circle cx="28" cy="32" r="3" fill="#fbbf24" opacity="0.8"/>
+					<!-- Lineas de detalle -->
+					<line x1="30" y1="40" x2="90" y2="40" stroke="#0f172a" stroke-width="1" opacity="0.3"/>
+				</svg>
+			</div>
+			<h3>Sedán Privado</h3>
+			<p>Comodidad para 1-3 pasajeros</p>
+			<ul class="servicio-features">
+				<li><i class="fas fa-check"></i> GPS Rastreado</li>
+				<li><i class="fas fa-check"></i> Conductor profesional</li>
+				<li><i class="fas fa-check"></i> WiFi gratis</li>
+			</ul>
+		</div>
+
+		<div class="servicio-card">
+			<div class="servicio-icon suv-icon">
+				<svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg" class="car-svg">
+					<!-- Sombra -->
+					<ellipse cx="60" cy="58" rx="52" ry="11" fill="#FFA500" opacity="0.15"/>
+					<!-- Ruedas trasera -->
+					<circle cx="32" cy="56" r="9" fill="#0f172a" stroke="#FFA500" stroke-width="2.5"/>
+					<circle cx="32" cy="56" r="6" fill="#FFA500" opacity="0.4"/>
+					<!-- Rueda delantera -->
+					<circle cx="88" cy="56" r="9" fill="#0f172a" stroke="#FFA500" stroke-width="2.5"/>
+					<circle cx="88" cy="56" r="6" fill="#FFA500" opacity="0.4"/>
+					<!-- Cuerpo principal SUV (mas alto) -->
+					<path d="M 25 42 Q 22 25 32 15 L 88 15 Q 98 25 95 42 Z" fill="#FFA500" stroke="#FFA500" stroke-width="2.5" stroke-linejoin="round"/>
+					<!-- Base robusta -->
+					<rect x="23" y="42" width="74" height="14" rx="3" fill="#FFA500"/>
+					<!-- Ventanas grandes -->
+					<rect x="38" y="18" width="19" height="16" rx="2" fill="rgba(23, 153, 156, 0.4)" stroke="#17999C" stroke-width="1.5"/>
+					<rect x="63" y="18" width="19" height="16" rx="2" fill="rgba(23, 153, 156, 0.4)" stroke="#17999C" stroke-width="1.5"/>
+					<!-- Faros dobles -->
+					<circle cx="23" cy="28" r="3.5" fill="#fbbf24" opacity="0.9"/>
+					<circle cx="23" cy="35" r="2.5" fill="#fbbf24" opacity="0.7"/>
+					<!-- Linea divisoria -->
+					<line x1="25" y1="42" x2="95" y2="42" stroke="#0f172a" stroke-width="1.5" opacity="0.4"/>
+				</svg>
+			</div>
+			<h3>SUV Ejecutivo</h3>
+			<p>Experiencia premium</p>
+			<ul class="servicio-features">
+				<li><i class="fas fa-check"></i> Clima Premium</li>
+				<li><i class="fas fa-check"></i> Minibar</li>
+				<li><i class="fas fa-check"></i> Prensa/TV</li>
+			</ul>
+		</div>
+
+		<div class="servicio-card">
+			<div class="servicio-icon van-icon">
+				<svg viewBox="0 0 130 70" xmlns="http://www.w3.org/2000/svg" class="car-svg">
+					<!-- Sombra -->
+					<ellipse cx="65" cy="58" rx="58" ry="11" fill="#17999C" opacity="0.15"/>
+					<!-- Ruedas trasera -->
+					<circle cx="28" cy="56" r="9.5" fill="#0f172a" stroke="#17999C" stroke-width="2.5"/>
+					<circle cx="28" cy="56" r="6" fill="#17999C" opacity="0.4"/>
+					<circle cx="45" cy="56" r="9.5" fill="#0f172a" stroke="#17999C" stroke-width="2.5"/>
+					<circle cx="45" cy="56" r="6" fill="#17999C" opacity="0.4"/>
+					<!-- Rueda delantera -->
+					<circle cx="102" cy="56" r="9.5" fill="#0f172a" stroke="#17999C" stroke-width="2.5"/>
+					<circle cx="102" cy="56" r="6" fill="#17999C" opacity="0.4"/>
+					<!-- Cuerpo principal VAN (largo y espacioso) -->
+					<path d="M 20 42 Q 18 24 28 12 L 102 12 Q 112 24 110 42 Z" fill="#17999C" stroke="#17999C" stroke-width="2.5" stroke-linejoin="round"/>
+					<!-- Base extendida -->
+					<rect x="18" y="42" width="94" height="14" rx="3" fill="#17999C"/>
+					<!-- Ventanas múltiples -->
+					<rect x="35" y="15" width="14" height="14" rx="1.5" fill="rgba(255, 165, 0, 0.35)" stroke="#FFA500" stroke-width="1"/>
+					<rect x="55" y="15" width="14" height="14" rx="1.5" fill="rgba(255, 165, 0, 0.35)" stroke="#FFA500" stroke-width="1"/>
+					<rect x="75" y="15" width="14" height="14" rx="1.5" fill="rgba(255, 165, 0, 0.35)" stroke="#FFA500" stroke-width="1"/>
+					<!-- Faros -->
+					<circle cx="18" cy="30" r="3" fill="#fbbf24" opacity="0.85"/>
+					<!-- Decoración lateral -->
+					<line x1="20" y1="42" x2="110" y2="42" stroke="#0f172a" stroke-width="1" opacity="0.3"/>
+				</svg>
+			</div>
+			<h3>Van (6 personas)</h3>
+			<p>Ideal para grupos</p>
+			<ul class="servicio-features">
+				<li><i class="fas fa-check"></i> Espacioso y cómodo</li>
+				<li><i class="fas fa-check"></i> Maletero grande</li>
+				<li><i class="fas fa-check"></i> Entretenimiento</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<!-- COTIZADOR -->
+<section class="cotizador" id="cotizar">
+	<h2>Cotiza tu traslado</h2>
+
+	<form id="cotizadorForm" class="form-container">
+		<div class="form-group">
+			<label><i class="fas fa-map-marker-alt"></i> Comuna destino</label>
+			<select id="comuna">
+				<option value="">-- Seleccionar comuna --</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label><i class="fas fa-car-side"></i> Tipo de vehículo</label>
+			<select id="servicio">
+				<option value="privado">Sedán Privado</option>
+				<option value="ejecutivo">SUV Ejecutivo</option>
+				<option value="van">Van</option>
+			</select>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group">
+				<label><i class="fas fa-users"></i> Pasajeros</label>
+				<input type="number" id="pasajeros" min="1" max="10" value="1">
+			</div>
+
+			<div class="form-group">
+				<label><i class="fas fa-calendar-alt"></i> Fecha y hora</label>
+				<input type="datetime-local" id="fecha">
+			</div>
+		</div>
+
+		<button type="submit" class="cta-btn">Cotizar traslado</button>
+	</form>
+
+	<div id="resultado" class="result"></div>
+</section>
+
+<!-- DESTINOS TURÍSTICOS -->
+<section class="destinos-section" id="destinos">
+	<h2>Destinos Turísticos Chile</h2>
+	<p class="destinos-subtitle">Descubre los mejores lugares de Chile con LEOTOUR</p>
+
+	<div class="destinos-grid">
+		<div class="destino-card">
+			<div class="destino-img" style="background-image: url('img/cartagena.jpg'); position: relative;">
+				<span class="destino-label">Cartagena</span>
+			</div>
+			<div class="destino-info">
+				<h3>Cartagena</h3>
+				<p>Puerto histórico con playas y vistas al mar</p>
+				<div class="destino-price">
+					<span class="price">$45.000 CLP</span>
+					<span class="distance">45 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Cartagena', 45000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background-image: url('img/valparaiso.jpg'); position: relative;">
+				<span class="destino-label">Valparaíso</span>
+			</div>
+			<div class="destino-info">
+				<h3>Valparaíso</h3>
+				<p>Ciudad vibrante con cerros coloridos y arte</p>
+				<div class="destino-price">
+					<span class="price">$35.000 CLP</span>
+					<span class="distance">120 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Valparaíso', 35000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background-image: url('img/san-antonio.jpg'); position: relative;">
+				<span class="destino-label">San Antonio</span>
+			</div>
+			<div class="destino-info">
+				<h3>San Antonio</h3>
+				<p>Puerto pesquero con playas tranquilas</p>
+				<div class="destino-price">
+					<span class="price">$55.000 CLP</span>
+					<span class="distance">100 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('San Antonio', 55000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background-image: url('img/pomaire.jpg'); position: relative;">
+				<span class="destino-label">Pomaire</span>
+			</div>
+			<div class="destino-info">
+				<h3>Pomaire</h3>
+				<p>Pueblo típico con cerámica artesanal</p>
+				<div class="destino-price">
+					<span class="price">$65.000 CLP</span>
+					<span class="distance">60 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Pomaire', 65000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background-image: url('img/cajon-maipo.jpg'); position: relative;">
+				<span class="destino-label">Cajón del Maipo</span>
+			</div>
+			<div class="destino-info">
+				<h3>Cajón del Maipo</h3>
+				<p>Montañas, ríos y naturaleza pura</p>
+				<div class="destino-price">
+					<span class="price">$50.000 CLP</span>
+					<span class="distance">50 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Cajón del Maipo', 50000)">Cotizar</button>
+			</div>
+		</div>
+
+		<div class="destino-card">
+			<div class="destino-img" style="background-image: url('img/pirque.jpg'); position: relative;">
+				<span class="destino-label">Pirque (Viñas)</span>
+			</div>
+			<div class="destino-info">
+				<h3>Pirque (Viñas)</h3>
+				<p>Degustación de vinos y paisajes agrícolas</p>
+				<div class="destino-price">
+					<span class="price">$40.000 CLP</span>
+					<span class="distance">35 km</span>
+				</div>
+				<button class="destino-btn" onclick="cotizarDestino('Pirque', 40000)">Cotizar</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="destinoResultado" class="result" style="margin-top: 30px;"></div>
+</section>
+
+<!-- MAPA -->
+<section class="mapa" id="mapa">
+	<h2>Mapa de rutas</h2>
+
+	<div id="map" class="map"></div>
+
+	<div class="map-footer">
+		<p id="summary" class="muted">Haz clic en el mapa para seleccionar destino</p>
+	</div>
+</section>
+
+<!-- VUELOS -->
+<section class="vuelos-panel" id="vuelos-section">
+	<div class="vuelos-header">
+		<h2><i class="fas fa-plane"></i> Vuelos en tiempo real - Aeropuerto AMB</h2>
+		<p class="vuelos-info">Información actualizada cada 30 segundos</p>
+	</div>
+
+	<div class="vuelos-container">
+		<div class="vuelos-display">
+			<div id="vuelos" class="vuelos-board"></div>
+		</div>
+	</div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+	<h2>Contacto</h2>
+
+	<form id="contactForm" class="contact-form">
+		<input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+		<input type="email" id="correo" name="correo" placeholder="Correo" required>
+		<textarea id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
+		<button type="submit" class="cta-btn">Enviar</button>
+		<div id="contactResult" style="margin-top: 10px; display: none;"></div>
+	</form>
+
+	<div class="contact-info">
+		<p><i class="fas fa-envelope"></i> Email: contacto@leotour.cl</p>
+		<p><i class="fas fa-phone"></i> Teléfono: +56 9 1234 5678</p>
+	</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+	<p>© 2026 LEOTOUR - Transporte Premium SCL</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
