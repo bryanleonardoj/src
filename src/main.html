@@ -19,6 +19,9 @@
 
 	<!-- Leaflet (mapa) -->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -52,41 +55,37 @@
 <!-- HERO CON CARRUSEL DE FONDO -->
 <section class="hero">
 	<!-- BANNER CARRUSEL DESTINOS (FONDO) -->
-	<div class="carousel-container">
-		<div class="carousel-track">
-			<div class="carousel-slide active">
-				<img src="img/banner_san_antonio.jpg" alt="San Antonio">
+	<div id="bannerCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+			<button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1"></button>
+			<button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2"></button>
+			<button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="3"></button>
+			<button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="4"></button>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="img/banner_san_antonio.jpg" class="d-block w-100" alt="San Antonio">
 			</div>
-			<div class="carousel-slide">
-				<img src="img/banner_pomaire.jpg" alt="Pomaire">
+			<div class="carousel-item">
+				<img src="img/banner_pomaire.jpg" class="d-block w-100" alt="Pomaire">
 			</div>
-			<div class="carousel-slide">
-				<img src="img/banner_valparaiso.jpg" alt="Valparaíso">
+			<div class="carousel-item">
+				<img src="img/banner_valparaiso.jpg" class="d-block w-100" alt="Valparaíso">
 			</div>
-			<div class="carousel-slide">
-				<img src="img/banner_montana.jpg" alt="Montaña">
+			<div class="carousel-item">
+				<img src="img/banner_montana.jpg" class="d-block w-100" alt="Montaña">
 			</div>
-			<div class="carousel-slide">
-				<img src="img/banner_torre_paine.png" alt="Torres del Paine">
+			<div class="carousel-item">
+				<img src="img/banner_torre_paine.png" class="d-block w-100" alt="Torres del Paine">
 			</div>
 		</div>
-
-		<!-- Controles -->
-		<button class="carousel-prev" id="carouselPrev">
-			<i class="fas fa-chevron-left"></i>
+		<button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon"></span>
 		</button>
-		<button class="carousel-next" id="carouselNext">
-			<i class="fas fa-chevron-right"></i>
+		<button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+			<span class="carousel-control-next-icon"></span>
 		</button>
-
-		<!-- Paginación -->
-		<div class="carousel-dots">
-			<button class="dot active" data-slide="0"></button>
-			<button class="dot" data-slide="1"></button>
-			<button class="dot" data-slide="2"></button>
-			<button class="dot" data-slide="3"></button>
-			<button class="dot" data-slide="4"></button>
-		</div>
 	</div>
 
 	<!-- OVERLAY Y CONTENIDO -->
@@ -527,6 +526,8 @@
 
 <!-- SCRIPTS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
 
 </body>

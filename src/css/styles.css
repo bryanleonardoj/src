@@ -2149,141 +2149,130 @@ textarea:focus {
 }
 
 /* ========================= */
-/* CARRUSEL (Usado en HERO) */
+/* CARRUSEL CON BOOTSTRAP */
 /* ========================= */
 
-.carousel-container {
-	position: relative;
+.hero #bannerCarousel {
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
+	z-index: 0;
 }
 
-.carousel-track {
-	display: flex;
-	width: 100%;
+.carousel-inner {
 	height: 100%;
-	position: relative;
 }
 
-.carousel-slide {
-	min-width: 100%;
+.carousel-item {
 	height: 100%;
-	position: relative;
-	overflow: hidden;
-	opacity: 0;
-	transition: opacity 0.8s ease-in-out;
 }
 
-.carousel-slide.active {
-	opacity: 1;
-	z-index: 1;
-}
-
-.carousel-slide img {
+.carousel-item img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	display: block;
 }
 
-/* Botones de navegación */
-.carousel-prev,
-.carousel-next {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	background: rgba(255, 165, 0, 0.7);
-	border: none;
-	color: white;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	cursor: pointer;
-	font-size: 20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: all 0.3s ease;
-	z-index: 10;
+/* Personalizar controles de Bootstrap */
+.carousel-control-prev,
+.carousel-control-next {
+	background: rgba(255, 165, 0, 0.6) !important;
+	width: 50px !important;
+	height: 50px !important;
+	border-radius: 50% !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
+	opacity: 1 !important;
 }
 
-.carousel-prev:hover,
-.carousel-next:hover {
-	background: rgba(255, 165, 0, 1);
-	transform: translateY(-50%) scale(1.1);
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+	background: rgba(255, 165, 0, 0.9) !important;
 }
 
-.carousel-prev {
-	left: 20px;
+.carousel-control-prev {
+	left: 20px !important;
 }
 
-.carousel-next {
-	right: 20px;
+.carousel-control-next {
+	right: 20px !important;
 }
 
-/* Paginación */
-.carousel-dots {
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	gap: 12px;
-	z-index: 10;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	background-size: contain;
 }
 
-.dot {
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	border: none;
-	background: rgba(255, 255, 255, 0.4);
-	cursor: pointer;
-	transition: all 0.3s ease;
+/* Indicadores (dots) de Bootstrap */
+.carousel-indicators {
+	bottom: 20px !important;
+	z-index: 10 !important;
 }
 
-.dot.active {
-	background: #FFA500;
-	width: 32px;
-	border-radius: 6px;
+.carousel-indicators button {
+	width: 12px !important;
+	height: 12px !important;
+	border-radius: 50% !important;
+	background-color: rgba(255, 255, 255, 0.4) !important;
+	border: none !important;
+	opacity: 1 !important;
 }
 
-.dot:hover {
-	background: rgba(255, 165, 0, 0.8);
+.carousel-indicators button.active {
+	width: 32px !important;
+	border-radius: 6px !important;
+	background-color: #FFA500 !important;
+}
+
+.carousel-indicators button:hover {
+	background-color: rgba(255, 165, 0, 0.8) !important;
+}
+
+/* Fade effect personalizado */
+.carousel-fade .carousel-item {
+	opacity: 0;
+	transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-fade .carousel-item.active {
+	opacity: 1;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-	.carousel-prev,
-	.carousel-next {
-		width: 40px;
-		height: 40px;
-		font-size: 16px;
+	.carousel-control-prev,
+	.carousel-control-next {
+		width: 40px !important;
+		height: 40px !important;
 	}
 
-	.carousel-prev {
-		left: 10px;
+	.carousel-control-prev {
+		left: 10px !important;
 	}
 
-	.carousel-next {
-		right: 10px;
+	.carousel-control-next {
+		right: 10px !important;
 	}
 }
 
 @media (max-width: 480px) {
-	.carousel-prev,
-	.carousel-next {
-		width: 35px;
-		height: 35px;
-		font-size: 14px;
+	.carousel-control-prev,
+	.carousel-control-next {
+		width: 35px !important;
+		height: 35px !important;
 	}
 
-	.dot {
-		width: 10px;
-		height: 10px;
+	.carousel-indicators button {
+		width: 10px !important;
+		height: 10px !important;
 	}
 
-	.dot.active {
-		width: 24px;
+	.carousel-indicators button.active {
+		width: 24px !important;
 	}
 }
