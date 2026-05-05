@@ -36,9 +36,9 @@
 			<a href="#destinos" class="nav-link">Destinos</a>
 			<a href="#mapa" class="nav-link">Mapa</a>
 			<a href="#vuelos-section" class="nav-link">Vuelos</a>
-			<a href="#registro-section" class="nav-link">Registro</a>
-			<a href="#login-section" class="nav-link">Login</a>
 			<a href="#contacto" class="nav-link">Contacto</a>
+			<button class="nav-link btn-registro" onclick="abrirModalRegistro()">Registro</button>
+			<button class="nav-link btn-login" onclick="abrirModalLogin()">Login</button>
 		</nav>
 
 		<div class="hamburger">
@@ -337,89 +337,97 @@
 	</div>
 </section>
 
-<!-- ========== FORMULARIOS INTERACTIVOS ========== -->
+<!-- ========== MODALES DE FORMULARIOS ========== -->
 
-<!-- REGISTRO -->
-<section class="formularios-section" id="registro-section">
-	<h2><i class="fas fa-user-plus"></i> Registro</h2>
-	
-	<form id="registroForm" class="form-container">
-		<!-- Campo Usuario -->
-		<div class="form-group">
-			<label for="regUsuario"><i class="fas fa-user"></i> Usuario</label>
-			<input type="text" id="regUsuario" name="usuario" placeholder="Ingresa tu usuario">
-			<span class="error-msg" id="error-usuario"></span>
+<!-- MODAL DE REGISTRO -->
+<div id="modalRegistro" class="modal">
+	<div class="modal-content">
+		<button class="modal-close" onclick="cerrarModalRegistro()">×</button>
+		
+		<h2><i class="fas fa-user-plus"></i> Registro</h2>
+		
+		<form id="registroForm" class="form-container">
+			<!-- Campo Usuario -->
+			<div class="form-group">
+				<label for="regUsuario"><i class="fas fa-user"></i> Usuario</label>
+				<input type="text" id="regUsuario" name="usuario" placeholder="Ingresa tu usuario">
+				<span class="error-msg" id="error-usuario"></span>
+			</div>
+
+			<!-- Campo Email -->
+			<div class="form-group">
+				<label for="regEmail"><i class="fas fa-envelope"></i> Email</label>
+				<input type="text" id="regEmail" name="email" placeholder="tu@email.com">
+				<span class="error-msg" id="error-email"></span>
+			</div>
+
+			<!-- Campo Contraseña -->
+			<div class="form-group">
+				<label for="regPassword"><i class="fas fa-lock"></i> Contraseña</label>
+				<input type="password" id="regPassword" name="password" placeholder="Mínimo 8 caracteres">
+				<span class="error-msg" id="error-password"></span>
+			</div>
+
+			<!-- Campo Confirmar Contraseña -->
+			<div class="form-group">
+				<label for="regPasswordConfirm"><i class="fas fa-lock-open"></i> Confirmar Contraseña</label>
+				<input type="password" id="regPasswordConfirm" name="passwordConfirm" placeholder="Confirma tu contraseña">
+				<span class="error-msg" id="error-passwordConfirm"></span>
+			</div>
+
+			<!-- Botón Registrarse -->
+			<button type="submit" class="cta-btn primary">
+				<i class="fas fa-check-circle"></i> Registrarse
+			</button>
+
+			<!-- Contenedor para mensajes de éxito/error -->
+			<div id="registroResult" class="result-msg"></div>
+		</form>
+
+		<!-- Enlace para ir a Login -->
+		<div class="form-footer">
+			<p>¿Ya tienes cuenta? <a onclick="cambiarALogin()" class="form-link">Inicia sesión aquí</a></p>
 		</div>
-
-		<!-- Campo Email -->
-		<div class="form-group">
-			<label for="regEmail"><i class="fas fa-envelope"></i> Email</label>
-			<input type="text" id="regEmail" name="email" placeholder="tu@email.com">
-			<span class="error-msg" id="error-email"></span>
-		</div>
-
-		<!-- Campo Contraseña -->
-		<div class="form-group">
-			<label for="regPassword"><i class="fas fa-lock"></i> Contraseña</label>
-			<input type="password" id="regPassword" name="password" placeholder="Mínimo 8 caracteres">
-			<span class="error-msg" id="error-password"></span>
-		</div>
-
-		<!-- Campo Confirmar Contraseña -->
-		<div class="form-group">
-			<label for="regPasswordConfirm"><i class="fas fa-lock-open"></i> Confirmar Contraseña</label>
-			<input type="password" id="regPasswordConfirm" name="passwordConfirm" placeholder="Confirma tu contraseña">
-			<span class="error-msg" id="error-passwordConfirm"></span>
-		</div>
-
-		<!-- Botón Registrarse -->
-		<button type="submit" class="cta-btn primary">
-			<i class="fas fa-check-circle"></i> Registrarse
-		</button>
-
-		<!-- Contenedor para mensajes de éxito/error -->
-		<div id="registroResult" class="result-msg"></div>
-	</form>
-
-	<!-- Enlace para ir a Login -->
-	<div class="form-footer">
-		<p>¿Ya tienes cuenta? <a href="#login-section" class="form-link">Inicia sesión aquí</a></p>
 	</div>
-</section>
+</div>
 
-<!-- LOGIN -->
-<section class="formularios-section" id="login-section">
-	<h2><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h2>
-	
-	<form id="loginForm" class="form-container">
-		<!-- Campo Email -->
-		<div class="form-group">
-			<label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
-			<input type="text" id="loginEmail" name="email" placeholder="tu@email.com">
-			<span class="error-msg" id="error-login-email"></span>
+<!-- MODAL DE LOGIN -->
+<div id="modalLogin" class="modal">
+	<div class="modal-content">
+		<button class="modal-close" onclick="cerrarModalLogin()">×</button>
+		
+		<h2><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h2>
+		
+		<form id="loginForm" class="form-container">
+			<!-- Campo Email -->
+			<div class="form-group">
+				<label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
+				<input type="text" id="loginEmail" name="email" placeholder="tu@email.com">
+				<span class="error-msg" id="error-login-email"></span>
+			</div>
+
+			<!-- Campo Contraseña -->
+			<div class="form-group">
+				<label for="loginPassword"><i class="fas fa-lock"></i> Contraseña</label>
+				<input type="password" id="loginPassword" name="password" placeholder="Tu contraseña">
+				<span class="error-msg" id="error-login-password"></span>
+			</div>
+
+			<!-- Botón Ingresar -->
+			<button type="submit" class="cta-btn primary">
+				<i class="fas fa-arrow-right"></i> Ingresar
+			</button>
+
+			<!-- Contenedor para mensajes de éxito/error -->
+			<div id="loginResult" class="result-msg"></div>
+		</form>
+
+		<!-- Enlace para ir a Registro -->
+		<div class="form-footer">
+			<p>¿No tienes cuenta? <a onclick="cambiarARegistro()" class="form-link">Regístrate con nosotros</a></p>
 		</div>
-
-		<!-- Campo Contraseña -->
-		<div class="form-group">
-			<label for="loginPassword"><i class="fas fa-lock"></i> Contraseña</label>
-			<input type="password" id="loginPassword" name="password" placeholder="Tu contraseña">
-			<span class="error-msg" id="error-login-password"></span>
-		</div>
-
-		<!-- Botón Ingresar -->
-		<button type="submit" class="cta-btn primary">
-			<i class="fas fa-arrow-right"></i> Ingresar
-		</button>
-
-		<!-- Contenedor para mensajes de éxito/error -->
-		<div id="loginResult" class="result-msg"></div>
-	</form>
-
-	<!-- Enlace para ir a Registro -->
-	<div class="form-footer">
-		<p>¿No tienes cuenta? <a href="#registro-section" class="form-link">Regístrate con nosotros</a></p>
 	</div>
-</section>
+</div>
 
 <!-- CONTACTO MEJORADO -->
 <section class="contacto" id="contacto">

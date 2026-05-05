@@ -29,6 +29,78 @@ function initNavbar() {
 }
 
 // =========================
+// MODALES (REGISTRO Y LOGIN)
+// =========================
+
+function abrirModalRegistro() {
+	const modal = document.getElementById('modalRegistro');
+	if (modal) {
+		modal.classList.add('show');
+		document.body.style.overflow = 'hidden';
+	}
+}
+
+function cerrarModalRegistro() {
+	const modal = document.getElementById('modalRegistro');
+	if (modal) {
+		modal.classList.remove('show');
+		document.body.style.overflow = 'auto';
+	}
+}
+
+function abrirModalLogin() {
+	const modal = document.getElementById('modalLogin');
+	if (modal) {
+		modal.classList.add('show');
+		document.body.style.overflow = 'hidden';
+	}
+}
+
+function cerrarModalLogin() {
+	const modal = document.getElementById('modalLogin');
+	if (modal) {
+		modal.classList.remove('show');
+		document.body.style.overflow = 'auto';
+	}
+}
+
+function cambiarALogin() {
+	cerrarModalRegistro();
+	setTimeout(() => {
+		abrirModalLogin();
+	}, 300);
+}
+
+function cambiarARegistro() {
+	cerrarModalLogin();
+	setTimeout(() => {
+		abrirModalRegistro();
+	}, 300);
+}
+
+// Cerrar modal al hacer clic fuera del contenido
+window.addEventListener('click', (event) => {
+	const modalRegistro = document.getElementById('modalRegistro');
+	const modalLogin = document.getElementById('modalLogin');
+	
+	if (event.target === modalRegistro) {
+		cerrarModalRegistro();
+	}
+	if (event.target === modalLogin) {
+		cerrarModalLogin();
+	}
+});
+
+// Cerrar modal con tecla Escape
+document.addEventListener('keydown', (event) => {
+	if (event.key === 'Escape') {
+		cerrarModalRegistro();
+		cerrarModalLogin();
+	}
+});
+
+
+// =========================
 // DATOS
 // =========================
 
