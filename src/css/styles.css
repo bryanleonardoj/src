@@ -165,37 +165,70 @@ body {
 .hero {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	flex-direction: row;
+	justify-content: center;
+	flex-direction: column;
 	padding: 80px 40px;
 	gap: 60px;
-	background: linear-gradient(135deg, #0a3a3d 0%, #17999C 50%, #0f172a 100%);
-	border-radius: 0;
-	box-shadow: 0 20px 60px rgba(23, 153, 156, 0.25);
 	position: relative;
 	overflow: hidden;
 	animation: fadeInDown 0.8s ease;
+	height: 600px;
+	background: #000;
 }
 
-.hero::before {
-	content: '';
+/* Carrusel de fondo */
+.hero .carousel-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+.hero .carousel-track {
+	height: 100%;
+}
+
+.hero .carousel-slide {
+	height: 100%;
+}
+
+.hero .carousel-slide img {
+	height: 100%;
+}
+
+/* Overlay */
+.hero-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: 
-		radial-gradient(circle at 20% 50%, rgba(255, 165, 0, 0.08) 0%, transparent 50%),
-		radial-gradient(circle at 80% 80%, rgba(23, 153, 156, 0.08) 0%, transparent 50%);
+	background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(23, 153, 156, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%);
+	z-index: 1;
 	pointer-events: none;
 }
 
+/* Contenido */
 .hero-content {
-	max-width: 600px;
+	max-width: 700px;
 	color: #fff;
 	position: relative;
 	z-index: 2;
 	animation: fadeInUp 1s ease 0.2s both;
+	text-align: center;
+}
+
+/* Controles del carrusel en el hero */
+.hero .carousel-prev,
+.hero .carousel-next {
+	z-index: 5;
+}
+
+.hero .carousel-dots {
+	z-index: 5;
+	bottom: 30px;
 }
 
 .hero-title {
@@ -270,22 +303,7 @@ body {
 }
 
 .hero-img {
-	width: 420px;
-	height: auto;
-	border-radius: 30px;
-	object-fit: cover;
-	box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-	border: 3px solid rgba(255, 255, 255, 0.2);
-	background: #eef2ff;
-	animation: fadeInUp 1s ease 0.4s both;
-	transition: transform 0.3s ease;
-	position: relative;
-	z-index: 2;
-}
-
-.hero-img:hover {
-	transform: translateY(-15px);
-	box-shadow: 0 40px 80px rgba(23, 153, 156, 0.3);
+	display: none;
 }
 
 @keyframes fadeInDown {
@@ -312,23 +330,18 @@ body {
 
 @media (max-width: 1200px) {
 	.hero {
-		flex-direction: column;
+		height: 550px;
 		padding: 60px 30px;
-		gap: 40px;
 	}
 
 	.hero-title {
 		font-size: 3rem;
 	}
-
-	.hero-img {
-		width: 100%;
-		max-width: 400px;
-	}
 }
 
 @media (max-width: 768px) {
 	.hero {
+		height: 450px;
 		padding: 40px 20px;
 	}
 
@@ -347,6 +360,21 @@ body {
 	.cta-btn {
 		width: 100%;
 		text-align: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.hero {
+		height: 350px;
+		padding: 30px 15px;
+	}
+
+	.hero-title {
+		font-size: 1.8rem;
+	}
+
+	.hero-subtitle {
+		font-size: 0.9rem;
 	}
 }
 
@@ -2121,16 +2149,8 @@ textarea:focus {
 }
 
 /* ========================= */
-/* BANNER CARRUSEL DESTINOS */
+/* CARRUSEL (Usado en HERO) */
 /* ========================= */
-
-.banner-carousel-section {
-	width: 100%;
-	height: 550px;
-	overflow: hidden;
-	position: relative;
-	background: #0f172a;
-}
 
 .carousel-container {
 	position: relative;
@@ -2163,41 +2183,6 @@ textarea:focus {
 	height: 100%;
 	object-fit: cover;
 	display: block;
-}
-
-.carousel-overlay {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 50%, transparent 100%);
-	padding: 40px 30px 30px;
-	color: white;
-	animation: slideUpOverlay 0.6s ease;
-}
-
-@keyframes slideUpOverlay {
-	from {
-		transform: translateY(20px);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-
-.carousel-overlay h3 {
-	font-size: 32px;
-	font-weight: 900;
-	margin-bottom: 8px;
-	font-family: 'Montserrat', sans-serif;
-}
-
-.carousel-overlay p {
-	font-size: 16px;
-	font-weight: 400;
-	opacity: 0.95;
 }
 
 /* Botones de navegación */
@@ -2268,22 +2253,6 @@ textarea:focus {
 
 /* Responsive */
 @media (max-width: 768px) {
-	.banner-carousel-section {
-		height: 350px;
-	}
-
-	.carousel-overlay {
-		padding: 25px 20px 20px;
-	}
-
-	.carousel-overlay h3 {
-		font-size: 24px;
-	}
-
-	.carousel-overlay p {
-		font-size: 14px;
-	}
-
 	.carousel-prev,
 	.carousel-next {
 		width: 40px;
@@ -2301,22 +2270,6 @@ textarea:focus {
 }
 
 @media (max-width: 480px) {
-	.banner-carousel-section {
-		height: 250px;
-	}
-
-	.carousel-overlay {
-		padding: 15px 15px 15px;
-	}
-
-	.carousel-overlay h3 {
-		font-size: 18px;
-	}
-
-	.carousel-overlay p {
-		font-size: 12px;
-	}
-
 	.carousel-prev,
 	.carousel-next {
 		width: 35px;
