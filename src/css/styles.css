@@ -67,7 +67,7 @@ body {
 }
 
 .nav-link {
-	color: #cbd5f5;
+	color: #ffffff;
 	text-decoration: none;
 	padding: 8px 16px;
 	border-radius: 8px;
@@ -2008,7 +2008,7 @@ textarea:focus {
 .nav-link.btn-login {
 	background: none;
 	border: none;
-	color: #e2e8f0;
+	color: #ffffff;
 	cursor: pointer;
 	font-family: 'Inter', sans-serif;
 	font-size: 1rem;
