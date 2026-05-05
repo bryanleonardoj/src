@@ -29,6 +29,79 @@ function initNavbar() {
 }
 
 // =========================
+// BANNER CARRUSEL DESTINOS
+// =========================
+
+function initCarousel() {
+	let currentSlide = 0;
+	const slides = document.querySelectorAll('.carousel-slide');
+	const dots = document.querySelectorAll('.carousel-dots .dot');
+	const prevBtn = document.getElementById('carouselPrev');
+	const nextBtn = document.getElementById('carouselNext');
+
+	if (!slides.length) return;
+
+	function showSlide(n) {
+		// Normalizar índice
+		if (n >= slides.length) currentSlide = 0;
+		if (n < 0) currentSlide = slides.length - 1;
+
+		// Remover clase active
+		slides.forEach(slide => slide.classList.remove('active'));
+		dots.forEach(dot => dot.classList.remove('active'));
+
+		// Agregar clase active
+		slides[currentSlide].classList.add('active');
+		dots[currentSlide].classList.add('active');
+	}
+
+	function nextSlide() {
+		currentSlide++;
+		showSlide(currentSlide);
+	}
+
+	function prevSlide() {
+		currentSlide--;
+		showSlide(currentSlide);
+	}
+
+	// Event listeners
+	if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+	if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+	dots.forEach((dot, index) => {
+		dot.addEventListener('click', () => {
+			currentSlide = index;
+			showSlide(currentSlide);
+			clearAutoplay(); // Parar autoplay al hacer click
+			startAutoplay(); // Reiniciar autoplay
+		});
+	});
+
+	// Autoplay
+	let autoplayInterval;
+
+	function startAutoplay() {
+		autoplayInterval = setInterval(nextSlide, 5000);
+	}
+
+	function clearAutoplay() {
+		clearInterval(autoplayInterval);
+	}
+
+	// Parar autoplay al hover
+	const carouselContainer = document.querySelector('.carousel-container');
+	if (carouselContainer) {
+		carouselContainer.addEventListener('mouseenter', clearAutoplay);
+		carouselContainer.addEventListener('mouseleave', startAutoplay);
+	}
+
+	// Inicializar
+	showSlide(currentSlide);
+	startAutoplay();
+}
+
+// =========================
 // MODALES (REGISTRO Y LOGIN)
 // =========================
 
@@ -712,6 +785,9 @@ window.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', cotizar);
   }
+
+  // Carrusel de banners
+  initCarousel();
 
   // Actualizar vuelos cada 8 segundos
   setInterval(actualizarVuelos, 8000);
