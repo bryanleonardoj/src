@@ -2176,6 +2176,7 @@ textarea:focus {
 
 .carousel-slide.active {
 	opacity: 1;
+	z-index: 1;
 }
 
 .carousel-slide img {
@@ -2186,25 +2187,24 @@ textarea:focus {
 }
 
 /* Botones de navegación */
-.carousel-slide {
-	min-width: 100%;
-	height: 100%;
-	position: relative;
-	overflow: hidden;
-	opacity: 0;
-	transition: opacity 1s ease-in-out;
-}
-
-.carousel-slide.active {
-	opacity: 1;
-	z-index: 1;
-}
-
-.carousel-slide img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
+.carousel-prev,
+.carousel-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(255, 165, 0, 0.7);
+	border: none;
+	color: white;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	z-index: 10;
 }
 
 .carousel-prev:hover,
