@@ -1,0 +1,164 @@
+============================================
+CONSULTAS A IA PARA EVALUACIÓN FORMATIVA 2
+LEOTOUR - Aplicación de Transporte
+============================================
+
+FECHA: 11 de Mayo de 2026
+ESTUDIANTE: Bryan Leonardo Jara
+
+
+CONSULTA 1 - VALIDACIÓN DE FORMULARIOS CON JAVASCRIPT/JQUERY
+============================================
+
+PROMPT ORIGINAL:
+"Necesito crear funciones de validación en JavaScript/jQuery para tres formularios diferentes (inscripción, login y contacto). 
+Los validadores deben:
+1. Validar que campos no estén vacíos
+2. Validar formato de email correctamente
+3. Validar que contraseña tenga mínimo 6 caracteres
+4. Validar que nombre tenga al menos 2 caracteres
+5. Validar que mensaje tenga mínimo 10 caracteres
+6. Mostrar mensajes de error en tiempo real bajo cada campo
+
+¿Cómo puedo implementar esto de forma modular y segura?"
+
+RECOMENDACIONES RECIBIDAS:
+- Usar expresiones regulares para validar email
+- Crear funciones separadas para cada tipo de validación (separación de responsabilidades)
+- Usar jQuery para simplificar manipulación del DOM
+- Validar también en el lado del servidor (aunque esta es una aplicación frontend)
+- Mostrar/ocultar mensajes de error de forma dinámica
+- Usar data attributes en HTML para vincular labels con inputs (accesibilidad)
+- Implementar validación al escribir (blur event) y al enviar (submit event)
+
+IMPLEMENTACIÓN FINAL:
+- Se crearon 5 funciones de validación reutilizables: validarNombre(), validarEmail(), validarContraseña(), validarTelefono(), validarMensaje()
+- Se usó jQuery para facilitar selección y manipulación del DOM
+- Se implementó mostrado de errores dinámico bajo cada campo
+- Se agregó localStorage para recordar usuario (funcionalidad adicional)
+
+
+CONSULTA 2 - CARRUSEL DE IMÁGENES FUNCIONAL
+============================================
+
+PROMPT ORIGINAL:
+"Necesito crear un carrusel de imágenes en HTML/CSS/JavaScript que:
+1. Muestre una imagen principal
+2. Tenga botones de 'Anterior' y 'Siguiente'
+3. Cambie la imagen al hacer clic en los botones
+4. Tenga indicadores (puntos) que muestren cuál imagen está activa
+5. Permita hacer clic en los indicadores para saltar a esa imagen
+6. Sea responsive y funcione en móvil
+7. Pueda contener más de 3 imágenes
+
+¿Cómo implemento esto sin librerías externas?"
+
+RECOMENDACIONES RECIBIDAS:
+- Usar un array para almacenar datos de las imágenes (nombre, descripción, URL)
+- Implementar un índice para rastrear la imagen actual
+- Usar módulo aritmético (%) para que el carrusel sea circular (no se detenga en el final)
+- Usar jQuery's .attr() para cambiar atributos de imagen de forma eficiente
+- Agregar descripción al carrusel para mejorar experiencia del usuario
+- Usar CSS para diseñar los botones y indicadores
+- Considerar agregar transiciones suaves CSS entre imágenes
+
+IMPLEMENTACIÓN FINAL:
+- Se creó array 'destinos' con datos de 3 imágenes (nombre, descripción, imagen)
+- Se implementó función actualizarCarrusel(indice) que maneja la lógica central
+- Se crearon funciones carruselAnterior() y carruselSiguiente() para facilidad de uso
+- Se usó jQuery para actualizar DOM cuando cambia la imagen
+- Se agregaron indicadores clickeables que permiten saltar a cualquier imagen
+- CSS proporciona estilos simples pero efectivos
+
+
+CONSULTA 3 - ESTRUCTURA DE DATOS PARA USUARIOS (OBJETOS Y ARREGLOS)
+============================================
+
+PROMPT ORIGINAL:
+"¿Cómo debo estructurar datos de usuarios en JavaScript para una aplicación web simple?
+Necesito:
+1. Almacenar múltiples usuarios registrados
+2. Guardar nombre, email, teléfono y contraseña
+3. Poder buscar un usuario por email
+4. Poder agregar nuevos usuarios
+5. Validar que no haya emails duplicados
+6. Hacer que sea fácil de convertir a JSON para guardar en BD
+
+¿Qué estructura es la mejor?"
+
+RECOMENDACIONES RECIBIDAS:
+- Usar un array de objetos para almacenar usuarios: const usuarios = [{nombre: "", email: "", ...}, ...]
+- Cada usuario es un objeto con propiedades claras
+- Usar array.find() para buscar usuarios
+- Implementar función para verificar email duplicado antes de registrar
+- Guardar en localStorage para persistencia básica
+- NUNCA guardar contraseñas en texto plano (solo en ejemplo educativo)
+- Usar JSON.stringify() para convertir a JSON antes de guardar
+- Considerar encriptación de contraseñas en aplicación real
+
+IMPLEMENTACIÓN FINAL:
+- Se creó array global 'usuariosRegistrados = []'
+- Cada usuario es un objeto con: {nombre, email, telefono, contraseña}
+- Se usan métodos de array como .find() en función manejarLogin()
+- Se usa .push() para agregar nuevos usuarios en manejarInscripcion()
+- Se verifica validación básica antes de agregar usuario
+- Mensajes de éxito/error informan al usuario del resultado
+
+
+CONSIDERACIONES DE SEGURIDAD APLICADAS:
+============================================
+
+1. VALIDACIÓN DE ENTRADA:
+   - Todas las entradas se validan con trim() para limpiar espacios
+   - Se usan expresiones regulares para validar formato de email
+   - Se valida longitud mínima de campos sensibles
+
+2. MANEJO DE ERRORES:
+   - Errores se muestran al usuario de forma clara
+   - No se exponen detalles técnicos innecesarios
+   - Mensajes de error son informativos
+
+3. PRIVACIDAD:
+   - Se usa localStorage solo para recordar email (no contraseña)
+   - Datos de usuario se guardan solo en memoria (no persisten entre sesiones)
+   - En producción se usaría servidor con HTTPS
+
+4. UX/UX:
+   - Validación ocurre al enviar formulario (previene frustraciones tempranas)
+   - Errores aparecen bajo cada campo para claridad
+   - Mensajes de éxito confirman acción completada
+
+5. LIMITACIONES DEL SISTEMA ACTUAL:
+   - Datos se pierden al recargar página (no hay persistencia real)
+   - No hay autenticación real de servidor
+   - Contraseñas se guardan sin encriptar (solo para demostración)
+   - En producción necesitaría: API backend, hash de contraseñas, CORS, etc.
+
+
+PRÓXIMOS PASOS RECOMENDADOS:
+============================================
+
+1. Agregar integración con API backend para persistencia real
+2. Implementar encriptación de contraseñas con bcrypt
+3. Agregar autenticación JWT para sesiones
+4. Implementar confirmación de email
+5. Agregar protección CSRF
+6. Usar HTTPS en producción
+7. Agregar logging de seguridad
+8. Implementar rate limiting para intentos de login
+
+
+RECURSOS Y REFERENCIAS UTILIZADAS:
+============================================
+
+- MDN Web Docs: Expresiones Regulares
+- MDN Web Docs: Array Methods (.find(), .push())
+- MDN Web Docs: localStorage API
+- jQuery Documentation: Selectors, Attributes
+- Bootstrap 5 Documentation: Form validation
+- JavaScript ES6 Arrow Functions
+- Seguridad Web: OWASP Top 10
+
+============================================
+FIN DE CONSULTAS
+============================================
