@@ -36,14 +36,18 @@
 			<a href="#destinos" class="nav-link">Destinos</a>
 			<a href="#mapa" class="nav-link">Mapa</a>
 			<a href="#vuelos-section" class="nav-link">Vuelos</a>
-			<a href="#contacto" class="nav-link">Contacto</a>		<button id="btnLogin" class="nav-link login-btn">Iniciar Sesión</button>
-		<button id="btnRegistro" class="nav-link registro-btn">Registrarse</button>		</nav>
-
-		<div class="hamburger">
-			<span></span>
-			<span></span>
-			<span></span>
+		<a href="#contacto" class="nav-link">Contacto</a>
+		
+		<!-- Selector de Monedas -->
+		<div class="currency-selector">
+			<button class="currency-btn active" data-currency="USD">USD</button>
+			<button class="currency-btn" data-currency="CLP">CLP</button>
+			<button class="currency-btn" data-currency="BRL">BRL</button>
 		</div>
+		
+		<button id="btnLogin" class="nav-link login-btn">Iniciar Sesión</button>
+		<button id="btnRegistro" class="nav-link registro-btn">Registrarse</button>
+	</nav>
 	</div>
 </header>
 
@@ -439,6 +443,11 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/script.js"></script>
+
+<!-- WhatsApp Flotante -->
+<a href="https://wa.me/56912345678?text=Hola%20LEOTOUR,%20me%20gustaría%20conocer%20más%20sobre%20tus%20servicios" class="whatsapp-btn" target="_blank" title="Contactar por WhatsApp">
+	<i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>

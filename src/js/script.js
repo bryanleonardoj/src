@@ -1,5 +1,15 @@
 /* ========================== DATOS GLOBALES ========================== */
 
+// Moneda actual seleccionada
+let monedaActual = localStorage.getItem("monedaSeleccionada") || "USD";
+
+// Tasas de cambio aproximadas (USD como base)
+const tasasCambio = {
+	USD: 1,
+	CLP: 850, // 1 USD = 850 CLP
+	BRL: 5.10  // 1 USD = 5.10 BRL
+};
+
 // Array de usuarios registrados
 let usuariosRegistrados = [];
 
@@ -27,6 +37,47 @@ const destinos = [
 		distancia: 100
 	}
 ];
+
+/* ========================== FUNCIONES DE MONEDA ========================== */
+
+/**
+ * Convierte un precio de CLP a la moneda seleccionada
+ * @param {number} precioCLP - Precio en CLP
+ * @returns {number} - Precio convertido a la moneda actual
+ */
+function convertirMoneda(precioCLP) {
+	// Convertir de CLP a USD primero
+	const precioUSD = precioCLP / tasasCambio.CLP;
+	// Luego de USD a la moneda seleccionada
+	return precioUSD * tasasCambio[monedaActual];
+}
+
+/**
+ * Obtiene el símbolo de moneda
+ * @returns {string} - Símbolo de la moneda actual
+ */
+function obtenerSimboloMoneda() {
+	const simbolos = {
+		USD: "$",
+		CLP: "$",
+		BRL: "R$"
+	};
+	return simbolos[monedaActual];
+}
+
+/**
+ * Formatea un precio con la moneda actual
+ * @param {number} precio - Precio a formatear
+ * @returns {string} - Precio formateado
+ */
+function formatearPrecio(precio) {
+	const simbolo = obtenerSimboloMoneda();
+	const precioFormateado = convertirMoneda(precio).toLocaleString("es-CL", {
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 0
+	});
+	return `${simbolo} ${precioFormateado}`;
+}
 
 /* ========================== FUNCIONES DE MODALES ========================== */
 
@@ -367,10 +418,55 @@ function inicializarCotizador() {
 		const precioTotal = precioBase + (pasajeros - 1) * 5000;
 
 		const resultado = `<div class="alert alert-success">
-			✓ Cotización a ${comuna}: $${precioTotal.toLocaleString("es-CL")} CLP para ${pasajeros} pasajeros (${servicio})
+			✓ Cotización a ${comuna}: ${formatearPrecio(precioTotal)} para ${pasajeros} pasajeros (${servicio})
 		</div>`;
 		$("#resultado").html(resultado);
 	});
+}
+
+/**
+ * Inicializa el selector de monedas
+ */
+function inicializarSelectorMonedas() {
+	// Establecer moneda guardada en botones
+	$(".currency-btn").removeClass("active");
+	$(`.currency-btn[data-currency="${monedaActual}"]`).addClass("active");
+
+	// Evento al hacer clic en un botón de moneda
+	$(".currency-btn").on("click", function() {
+		const nuevaMoneda = $(this).data("currency");
+		monedaActual = nuevaMoneda;
+		localStorage.setItem("monedaSeleccionada", monedaActual);
+
+		// Actualizar botones activos
+		$(".currency-btn").removeClass("active");
+		$(this).addClass("active");
+
+		// Actualizar precios en la página
+		actualizarPreciosEnPagina();
+
+		console.log(`✓ Moneda cambiada a: ${monedaActual}`);
+	});
+}
+
+/**
+ * Actualiza todos los precios en la página con la moneda actual
+ */
+function actualizarPreciosEnPagina() {
+	// Actualizar precios en tarjetas de destinos
+	$(".destino-price .price").each(function() {
+		const textoOriginal = $(this).text();
+		const precioNumerico = parseInt(textoOriginal.replace(/\D/g, ""));
+		if (precioNumerico) {
+			$(this).text(formatearPrecio(precioNumerico));
+		}
+	});
+
+	// Actualizar precios en resultado de cotización
+	const resultadoTexto = $("#resultado").text();
+	if (resultadoTexto.includes("Cotización")) {
+		// Aquí puedes agregar lógica adicional si es necesario
+	}
 }
 
 /**
@@ -411,6 +507,12 @@ $(document).ready(function() {
 	$(".nav-link").click(function() {
 		$(".nav-menu").removeClass("active");
 	});
+
+	// Inicializar selector de monedas
+	inicializarSelectorMonedas();
+
+	// Actualizar precios iniciales
+	actualizarPreciosEnPagina();
 });
 
 /* ========================== FUNCIONES ADICIONALES ========================== */

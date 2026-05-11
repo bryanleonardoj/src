@@ -1928,3 +1928,90 @@ transition: color 0.3s ease;
 .link-btn:hover {
 color: #e67e00;
 }
+
+/* ========================== SELECTOR DE MONEDAS ========================== */
+
+.currency-selector {
+display: flex;
+gap: 6px;
+align-items: center;
+margin: 0 12px;
+}
+
+.currency-btn {
+background: rgba(255, 255, 255, 0.1);
+border: 2px solid transparent;
+color: #1f2937;
+padding: 6px 12px;
+border-radius: 6px;
+font-size: 0.85rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+font-family: 'Inter', sans-serif;
+}
+
+.currency-btn:hover {
+background: rgba(255, 114, 0, 0.1);
+border-color: #ff8c00;
+color: #ff8c00;
+}
+
+.currency-btn.active {
+background: linear-gradient(135deg, #17999C 0%, #ff8c00 100%);
+color: white;
+border-color: #ff8c00;
+}
+
+/* ========================== BOTÓN WHATSAPP FLOTANTE ========================== */
+
+.whatsapp-btn {
+position: fixed;
+bottom: 30px;
+right: 30px;
+width: 60px;
+height: 60px;
+background: linear-gradient(135deg, #25D366 0%, #1da851 100%);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 999;
+box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+transition: all 0.3s ease;
+text-decoration: none;
+color: white;
+font-size: 28px;
+animation: float 3s ease-in-out infinite;
+}
+
+.whatsapp-btn:hover {
+transform: scale(1.1);
+box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-10px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.currency-selector {
+gap: 4px;
+margin: 0 8px;
+}
+
+.currency-btn {
+padding: 5px 10px;
+font-size: 0.75rem;
+}
+
+.whatsapp-btn {
+width: 50px;
+height: 50px;
+bottom: 20px;
+right: 20px;
+font-size: 24px;
+}
+}
