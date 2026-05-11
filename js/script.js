@@ -1,143 +1,125 @@
-// ============================================
-// LEOTOUR - SCRIPT PRINCIPAL
-// ============================================
-// Este archivo contiene toda la lógica de la aplicación
-// con jQuery para simplificar manipulación del DOM
+/* ========================== DATOS GLOBALES ========================== */
 
-/* ============================================
-   DATOS GLOBALES
-   ============================================ */
+// Array de usuarios registrados
+let usuariosRegistrados = [];
 
-// Array con información de destinos para el carrusel
+// Array de destinos disponibles
 const destinos = [
 	{
 		nombre: "Cartagena",
 		descripcion: "Puerto histórico con playas y vistas al mar",
-		imagen: "img/cartagena.jpg"
+		imagen: "img/cartagena.jpg",
+		precio: 45000,
+		distancia: 45
 	},
 	{
 		nombre: "Valparaíso",
 		descripcion: "Ciudad vibrante con cerros coloridos y arte",
-		imagen: "img/valparaiso.jpg"
+		imagen: "img/valparaiso.jpg",
+		precio: 35000,
+		distancia: 120
 	},
 	{
 		nombre: "San Antonio",
 		descripcion: "Puerto pesquero con playas tranquilas",
-		imagen: "img/san-antonio.jpg"
+		imagen: "img/san-antonio.jpg",
+		precio: 55000,
+		distancia: 100
 	}
 ];
 
-// Índice actual del carrusel
-let indiceCarruselActual = 0;
-
-// Array para almacenar usuarios registrados (simula una base de datos)
-let usuariosRegistrados = [];
-
-/* ============================================
-   FUNCIONES DEL CARRUSEL
-   ============================================ */
+/* ========================== FUNCIONES DE MODALES ========================== */
 
 /**
- * Actualiza la imagen, nombre y descripción del carrusel
- * @param {number} indice - Índice del destino a mostrar
+ * Abre el modal de login y cierra el de registro si estaba abierto
  */
-function actualizarCarrusel(indice) {
-	// Asegurar que el índice esté dentro del rango válido
-	if (indice < 0) {
-		indiceCarruselActual = destinos.length - 1;
-	} else if (indice >= destinos.length) {
-		indiceCarruselActual = 0;
-	} else {
-		indiceCarruselActual = indice;
-	}
-
-	// Obtener datos del destino actual
-	const destino = destinos[indiceCarruselActual];
-
-	// Actualizar imagen
-	$("#imagenCarrusel").attr("src", destino.imagen).attr("alt", destino.nombre);
-
-	// Actualizar nombre y descripción
-	$("#nombreDestino").text(destino.nombre);
-	$("#descripcionDestino").text(destino.descripcion);
-
-	// Actualizar indicadores visuales (puntos)
-	$(".indicador").removeClass("active");
-	$(`.indicador[data-index="${indiceCarruselActual}"]`).addClass("active");
+function abrirModalLogin() {
+	$("#modalLogin").addClass("active");
+	$("#modalRegistro").removeClass("active");
 }
 
 /**
- * Mostrar la imagen anterior del carrusel
+ * Abre el modal de registro y cierra el de login si estaba abierto
  */
-function carruselAnterior() {
-	actualizarCarrusel(indiceCarruselActual - 1);
+function abrirModalRegistro() {
+	$("#modalRegistro").addClass("active");
+	$("#modalLogin").removeClass("active");
 }
 
 /**
- * Mostrar la imagen siguiente del carrusel
+ * Cierra el modal de login
  */
-function carruselSiguiente() {
-	actualizarCarrusel(indiceCarruselActual + 1);
+function cerrarModalLogin() {
+	$("#modalLogin").removeClass("active");
+	$("#formularioLogin")[0].reset();
+	$("[id^='error_login_']").text("");
+	$("#mensaje_login").html("").hide();
 }
 
-/* ============================================
-   FUNCIONES DE VALIDACIÓN
-   ============================================ */
+/**
+ * Cierra el modal de registro
+ */
+function cerrarModalRegistro() {
+	$("#modalRegistro").removeClass("active");
+	$("#formularioInscripcion")[0].reset();
+	$("[id^='error_inscripcion_']").text("");
+	$("#mensaje_inscripcion").html("").hide();
+}
+
+/* ========================== FUNCIONES DE VALIDACIÓN ========================== */
 
 /**
- * Valida que el nombre tenga al menos 2 caracteres
+ * Valida que un nombre tenga al menos 2 caracteres
  * @param {string} nombre - Nombre a validar
- * @returns {boolean} true si es válido
+ * @returns {boolean} - True si es válido, false si no
  */
 function validarNombre(nombre) {
 	return nombre.trim().length >= 2;
 }
 
 /**
- * Valida formato de email usando expresión regular
+ * Valida que un email tenga el formato correcto
  * @param {string} email - Email a validar
- * @returns {boolean} true si es válido
+ * @returns {boolean} - True si es válido, false si no
  */
 function validarEmail(email) {
-	const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	return regexEmail.test(email);
+	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return regex.test(email);
 }
 
 /**
- * Valida que la contraseña tenga mínimo 6 caracteres
+ * Valida que una contraseña tenga al menos 6 caracteres
  * @param {string} contraseña - Contraseña a validar
- * @returns {boolean} true si es válido
+ * @returns {boolean} - True si es válida, false si no
  */
 function validarContraseña(contraseña) {
 	return contraseña.length >= 6;
 }
 
 /**
- * Valida que el teléfono tenga números
+ * Valida que un teléfono sea válido
  * @param {string} telefono - Teléfono a validar
- * @returns {boolean} true si es válido
+ * @returns {boolean} - True si es válido, false si no
  */
 function validarTelefono(telefono) {
-	const regexTelefono = /^[\d\s\-\+]+$/;
-	return regexTelefono.test(telefono) && telefono.trim().length >= 7;
+	const regex = /^[\d\s\-\+]+$/;
+	return regex.test(telefono) && telefono.replace(/\D/g, "").length >= 7;
 }
 
 /**
- * Valida que el mensaje tenga mínimo 10 caracteres
+ * Valida que un mensaje tenga al menos 10 caracteres
  * @param {string} mensaje - Mensaje a validar
- * @returns {boolean} true si es válido
+ * @returns {boolean} - True si es válido, false si no
  */
 function validarMensaje(mensaje) {
 	return mensaje.trim().length >= 10;
 }
 
-/* ============================================
-   FORMULARIO DE INSCRIPCIÓN
-   ============================================ */
+/* ========================== MANEJADORES DE FORMULARIOS ========================== */
 
 /**
- * Maneja el envío del formulario de inscripción
- * Valida todos los campos y registra el usuario
+ * Maneja el envío del formulario de inscripción/registro
+ * @param {Event} e - Evento del formulario
  */
 function manejarInscripcion(e) {
 	e.preventDefault();
@@ -148,7 +130,7 @@ function manejarInscripcion(e) {
 	const telefono = $("#inscripcion_telefono").val().trim();
 	const contraseña = $("#inscripcion_contraseña").val();
 
-	// Limpiar mensajes de error previos
+	// Limpiar mensajes de error
 	$("[id^='error_inscripcion_']").text("");
 
 	// Validar nombre
@@ -159,54 +141,48 @@ function manejarInscripcion(e) {
 
 	// Validar email
 	if (!validarEmail(email)) {
-		$("#error_inscripcion_email").text("Ingresa un correo válido");
+		$("#error_inscripcion_email").text("El email debe ser válido");
 		return;
 	}
 
 	// Validar teléfono
 	if (!validarTelefono(telefono)) {
-		$("#error_inscripcion_telefono").text("Ingresa un teléfono válido");
+		$("#error_inscripcion_telefono").text("El teléfono debe ser válido");
 		return;
 	}
 
 	// Validar contraseña
 	if (!validarContraseña(contraseña)) {
-		$("#error_inscripcion_contraseña").text("La contraseña debe tener mínimo 6 caracteres");
+		$("#error_inscripcion_contraseña").text("La contraseña debe tener al menos 6 caracteres");
 		return;
 	}
 
-	// Crear objeto de usuario
-	const nuevoUsuario = {
+	// Crear objeto usuario y agregar a array
+	const usuario = {
 		nombre: nombre,
 		email: email,
 		telefono: telefono,
-		contraseña: contraseña // En producción NUNCA guardar contraseña en texto plano
+		contraseña: contraseña
 	};
 
-	// Guardar usuario en el array
-	usuariosRegistrados.push(nuevoUsuario);
+	usuariosRegistrados.push(usuario);
 
 	// Mostrar mensaje de éxito
-	$("#mensaje_inscripcion")
-		.html('<div class="alert-success"><i class="fas fa-check-circle"></i> ¡Cuenta creada exitosamente! Bienvenido.</div>')
-		.show();
+	$("#mensaje_inscripcion").html('<div class="alert-success">✓ ¡Registro exitoso! Ahora puedes iniciar sesión.</div>');
+	$("#mensaje_inscripcion").show();
 
-	// Limpiar formulario
+	// Resetear formulario
 	$("#formularioInscripcion")[0].reset();
 
-	// Ocultar mensaje después de 5 segundos
+	// Cerrar modal después de 2 segundos
 	setTimeout(() => {
-		$("#mensaje_inscripcion").fadeOut();
-	}, 5000);
+		cerrarModalRegistro();
+	}, 2000);
 }
-
-/* ============================================
-   FORMULARIO DE LOGIN
-   ============================================ */
 
 /**
  * Maneja el envío del formulario de login
- * Verifica credenciales contra usuarios registrados
+ * @param {Event} e - Evento del formulario
  */
 function manejarLogin(e) {
 	e.preventDefault();
@@ -214,157 +190,273 @@ function manejarLogin(e) {
 	// Obtener valores del formulario
 	const email = $("#login_email").val().trim();
 	const contraseña = $("#login_contraseña").val();
+	const recordarme = $("#recordarme").is(":checked");
 
 	// Limpiar mensajes de error
 	$("[id^='error_login_']").text("");
 
 	// Validar email
 	if (!validarEmail(email)) {
-		$("#error_login_email").text("Ingresa un correo válido");
+		$("#error_login_email").text("El email debe ser válido");
 		return;
 	}
 
-	// Validar que contraseña no esté vacía
-	if (contraseña.length === 0) {
-		$("#error_login_contraseña").text("Ingresa tu contraseña");
+	// Validar contraseña
+	if (!validarContraseña(contraseña)) {
+		$("#error_login_contraseña").text("La contraseña debe tener al menos 6 caracteres");
 		return;
 	}
 
 	// Buscar usuario en el array
-	const usuarioEncontrado = usuariosRegistrados.find(u => u.email === email && u.contraseña === contraseña);
+	const usuarioEncontrado = usuariosRegistrados.find(usuario => 
+		usuario.email === email && usuario.contraseña === contraseña
+	);
 
 	if (usuarioEncontrado) {
-		// Credenciales correctas
-		$("#mensaje_login")
-			.html(`<div class="alert-success"><i class="fas fa-check-circle"></i> ¡Bienvenido ${usuarioEncontrado.nombre}! Sesión iniciada.</div>`)
-			.show();
+		// Si el usuario existe, mostrar mensaje de éxito
+		$("#mensaje_login").html(`<div class="alert-success">✓ ¡Bienvenido ${usuarioEncontrado.nombre}!</div>`);
+		$("#mensaje_login").show();
 
-		// Limpiar formulario
-		$("#formularioLogin")[0].reset();
-
-		// Guardar sesión en localStorage si "Recordarme" está marcado
-		if ($("#recordarme").is(":checked")) {
+		// Si el usuario marcó "Recuérdame", guardar en localStorage
+		if (recordarme) {
 			localStorage.setItem("usuarioLogueado", email);
 		}
 
-		// Redirigir después de 2 segundos
+		// Resetear formulario y cerrar modal
+		$("#formularioLogin")[0].reset();
 		setTimeout(() => {
-			alert("Acceso concedido - Redirigiendo...");
+			cerrarModalLogin();
 		}, 2000);
 	} else {
-		// Credenciales incorrectas
-		$("#mensaje_login")
-			.html('<div class="alert-danger"><i class="fas fa-exclamation-circle"></i> Correo o contraseña incorrectos.</div>')
-			.show();
+		// Usuario no encontrado
+		$("#mensaje_login").html('<div class="alert-danger">✗ Email o contraseña incorrectos</div>');
+		$("#mensaje_login").show();
 	}
 }
 
-/* ============================================
-   FORMULARIO DE CONTACTO
-   ============================================ */
-
 /**
  * Maneja el envío del formulario de contacto
- * Valida y simula el envío del mensaje
+ * @param {Event} e - Evento del formulario
  */
 function manejarContacto(e) {
 	e.preventDefault();
 
-	// Obtener valores del formulario
-	const nombre = $("#contacto_nombre").val().trim();
-	const email = $("#contacto_email").val().trim();
-	const mensaje = $("#contacto_mensaje").val().trim();
+	// Obtener valores
+	const nombre = $("#nombre").val().trim();
+	const email = $("#correo").val().trim();
+	const mensaje = $("#mensaje").val().trim();
 
-	// Limpiar mensajes de error
-	$("[id^='error_contacto_']").text("");
-
-	// Validar nombre
+	// Validar campos
 	if (!validarNombre(nombre)) {
-		$("#error_contacto_nombre").text("El nombre debe tener al menos 2 caracteres");
+		alert("El nombre debe tener al menos 2 caracteres");
 		return;
 	}
 
-	// Validar email
 	if (!validarEmail(email)) {
-		$("#error_contacto_email").text("Ingresa un correo válido");
+		alert("El email debe ser válido");
 		return;
 	}
 
-	// Validar mensaje
 	if (!validarMensaje(mensaje)) {
-		$("#error_contacto_mensaje").text("El mensaje debe tener mínimo 10 caracteres");
+		alert("El mensaje debe tener al menos 10 caracteres");
 		return;
 	}
 
-	// Mostrar mensaje de éxito
-	$("#mensaje_contacto")
-		.html('<div class="alert-success"><i class="fas fa-check-circle"></i> Mensaje enviado correctamente. Te contactaremos pronto.</div>')
-		.show();
+	// Mostrar resultado
+	const resultado = `<div class="alert alert-success">
+		✓ Gracias por contactarnos, ${nombre}. Tu mensaje ha sido recibido.
+	</div>`;
+	$("#contactResult").html(resultado).show();
 
-	// Limpiar formulario
-	$("#formularioContacto")[0].reset();
+	// Resetear formulario
+	$("#contactForm")[0].reset();
 
-	// Ocultar mensaje después de 5 segundos
+	// Ocultar resultado después de 3 segundos
 	setTimeout(() => {
-		$("#mensaje_contacto").fadeOut();
-	}, 5000);
+		$("#contactResult").fadeOut();
+	}, 3000);
 }
 
-/* ============================================
-   INICIALIZACIÓN DE EVENTOS
-   ============================================ */
-
 /**
- * Inicializa todos los eventos del carrusel
- * Se ejecuta cuando el documento está listo
+ * Cotiza un destino turístico
+ * @param {string} nombreDestino - Nombre del destino
+ * @param {number} precio - Precio del destino
  */
-function inicializarCarrusel() {
-	// Botón anterior
-	$("#btnAnterior").click(carruselAnterior);
+function cotizarDestino(nombreDestino, precio) {
+	const resultado = `<div class="alert alert-success">
+		✓ Cotización para ${nombreDestino}: $${precio.toLocaleString("es-CL")} CLP
+	</div>`;
+	$("#destinoResultado").html(resultado);
+}
 
-	// Botón siguiente
-	$("#btnSiguiente").click(carruselSiguiente);
+/* ========================== INICIALIZACIÓN DE LA APLICACIÓN ========================== */
 
-	// Indicadores (puntos)
-	$(".indicador").click(function() {
-		const index = $(this).data("index");
-		actualizarCarrusel(index);
+/**
+ * Inicializa los event listeners de los modales
+ */
+function inicializarModales() {
+	// Botones del navbar
+	$("#btnLogin").click(abrirModalLogin);
+	$("#btnRegistro").click(abrirModalRegistro);
+
+	// Botones de cerrar
+	$("#closeLogin").click(cerrarModalLogin);
+	$("#closeRegistro").click(cerrarModalRegistro);
+
+	// Enlaces para cambiar entre formularios
+	$("#irRegistro").click(abrirModalRegistro);
+	$("#irLogin").click(abrirModalLogin);
+
+	// Cerrar modal al hacer clic fuera del contenedor
+	$(document).click(function(event) {
+		if ($(event.target).hasClass("modal-overlay")) {
+			if ($(event.target).attr("id") === "modalLogin") {
+				cerrarModalLogin();
+			} else if ($(event.target).attr("id") === "modalRegistro") {
+				cerrarModalRegistro();
+			}
+		}
 	});
-
-	// Mostrar el primer destino
-	actualizarCarrusel(0);
 }
 
 /**
- * Inicializa todos los eventos de los formularios
+ * Inicializa los event listeners de los formularios
  */
 function inicializarFormularios() {
-	// Formulario de inscripción
 	$("#formularioInscripcion").on("submit", manejarInscripcion);
-
-	// Formulario de login
 	$("#formularioLogin").on("submit", manejarLogin);
-
-	// Formulario de contacto
-	$("#formularioContacto").on("submit", manejarContacto);
+	$("#contactForm").on("submit", manejarContacto);
 }
 
-/* ============================================
-   PUNTO DE ENTRADA - DOCUMENT READY
-   ============================================ */
+/**
+ * Inicializa datos del cotizador
+ */
+function inicializarCotizador() {
+	// Datos de comunas (ejemplo)
+	const comunas = [
+		"La Reina", "Providencia", "Santiago", "Ñuñoa",
+		"Macul", "Maipú", "Las Condes", "Vitacura"
+	];
 
+	// Llenar select de comunas
+	comunas.forEach(comuna => {
+		$("#comuna").append(`<option value="${comuna}">${comuna}</option>`);
+	});
+
+	// Evento del formulario cotizador
+	$("#cotizadorForm").on("submit", function(e) {
+		e.preventDefault();
+
+		const comuna = $("#comuna").val();
+		const servicio = $("#servicio").val();
+		const pasajeros = $("#pasajeros").val();
+
+		if (!comuna) {
+			alert("Por favor selecciona una comuna");
+			return;
+		}
+
+		// Calcular precio base según servicio
+		let precioBase = {
+			"privado": 15000,
+			"ejecutivo": 25000,
+			"van": 35000
+		}[servicio];
+
+		// Sumar por pasajeros adicionales
+		const precioTotal = precioBase + (pasajeros - 1) * 5000;
+
+		const resultado = `<div class="alert alert-success">
+			✓ Cotización a ${comuna}: $${precioTotal.toLocaleString("es-CL")} CLP para ${pasajeros} pasajeros (${servicio})
+		</div>`;
+		$("#resultado").html(resultado);
+	});
+}
+
+/**
+ * Punto de entrada principal - se ejecuta cuando el DOM está listo
+ */
 $(document).ready(function() {
-	console.log("Aplicación LEOTOUR iniciada");
+	console.log("✓ Aplicación LEOTOUR iniciada");
 
-	// Inicializar carrusel
-	inicializarCarrusel();
+	// Inicializar modales
+	inicializarModales();
 
 	// Inicializar formularios
 	inicializarFormularios();
 
+	// Inicializar cotizador
+	inicializarCotizador();
+
 	// Verificar si hay usuario guardado en localStorage
 	const usuarioGuardado = localStorage.getItem("usuarioLogueado");
 	if (usuarioGuardado) {
-		console.log("Usuario recordado: " + usuarioGuardado);
+		console.log("✓ Usuario recordado:", usuarioGuardado);
 	}
+
+	// Inicializar mapa (si está disponible Leaflet)
+	if (typeof L !== "undefined") {
+		inicializarMapa();
+	}
+
+	// Inicializar vuelos
+	inicializarVuelos();
+
+	// Hamburger menu toggle
+	$(".hamburger").click(function() {
+		$(".nav-menu").toggleClass("active");
+	});
+
+	// Cerrar menú al hacer clic en un enlace
+	$(".nav-link").click(function() {
+		$(".nav-menu").removeClass("active");
+	});
 });
+
+/* ========================== FUNCIONES ADICIONALES ========================== */
+
+/**
+ * Inicializa el mapa con Leaflet
+ */
+function inicializarMapa() {
+	try {
+		const map = L.map("map").setView([-33.8688, -151.2093], 11);
+
+		L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+			attribution: "&copy; OpenStreetMap contributors",
+			maxZoom: 19
+		}).addTo(map);
+
+		// Marcadores de destinos
+		L.marker([-33.5686, -71.5545]).bindPopup("Cartagena - 45 km").addTo(map);
+		L.marker([-33.0472, -71.6127]).bindPopup("Valparaíso - 120 km").addTo(map);
+		L.marker([-33.5903, -71.6218]).bindPopup("San Antonio - 100 km").addTo(map);
+	} catch (error) {
+		console.log("No se pudo inicializar el mapa");
+	}
+}
+
+/**
+ * Inicializa la vista de vuelos
+ */
+function inicializarVuelos() {
+	// Datos de ejemplo de vuelos
+	const vuelosEjemplo = [
+		{ hora: "08:15", destino: "Miami", estado: "En tiempo" },
+		{ hora: "10:30", destino: "New York", estado: "Retrasado" },
+		{ hora: "12:45", destino: "Buenos Aires", estado: "En tiempo" },
+		{ hora: "14:00", destino: "México", estado: "En tiempo" }
+	];
+
+	// Mostrar vuelos en la tabla
+	let html = "";
+	vuelosEjemplo.forEach(vuelo => {
+		html += `<div class="vuelo-item">
+			<span class="vuelo-hora">${vuelo.hora}</span>
+			<span class="vuelo-destino">${vuelo.destino}</span>
+			<span class="vuelo-estado">${vuelo.estado}</span>
+		</div>`;
+	});
+
+	$("#vuelos").html(html);
+}
